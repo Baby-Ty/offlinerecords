@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Sheet - NCA DR Interface (Simple View)</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            line-height: 1.6; 
+            background-color: #f9f9f9;
+        }
+        .header { 
+            background: #2c3e50; 
+            color: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            text-align: center;
+        }
+        .patient-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .patient-header {
+            background: #2ecc71;
+            color: white;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .patient-info {
+            padding: 20px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .info-section {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .info-label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            color: #34495e;
+        }
+        .return-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .return-btn:hover {
+            background: #7f8c8d;
+        }
+        .print-btn {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+            margin-bottom: 20px;
+        }
+        .diagnosis-section {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        @media print {
+            .return-btn, .print-btn { display: none; }
+            body { margin: 0; background: white; }
+        }
+    </style>
+</head>
+<body>
+    <a href="simple-records-viewer.html" class="return-btn">← Return to Records</a>
+    
+    <div class="header">
+        <h1>📋 Face Sheet - Residential Care</h1>
+        <p>Patient Summary Information</p>
+    </div>
+    
+    <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+    <div style="clear: both;"></div>
+    
+    <div id="patient-container">
+        <!-- Patient data will be loaded here -->
+    </div>
+    
+    <script>
+        // Sample patient data extracted from the XML
+        const patientData = {
+            ResidentName: "Fortier, James W",
+            BirthDate: "11/09/1954",
+            Age: "69",
+            Gender: "M",
+            MaritalStatusDesc: "Divorced",
+            AdmitDate: "01/19/2024",
+            AdmitTime: "10:00:00",
+            AdmittedFromDesc: "Non-Health Care Facility Point of Origin",
+            PrimaryResidence: "Russell Park Rehab & Living Center 158 Russell Street, Lewiston, ME 04240",
+            County: "ANDROSCOGGIN",
+            AdvancedDirectives: "Full Code",
+            SocSecNum: "004-58-1709",
+            AdmissionID: "27997",
+            InternalID: "57739",
+            AdmittingDiagICD1: "L89.899 - Pressure ulcer of other site, unspecified stage; L08.9 - Local infection of the skin and subcutaneous tissue, unsp; Z79.2 - Long term (current) use of antibiotics; Z79.01 - Long term (current) use of anticoagulants"
+        };
+        
+        function displayPatient(patient) {
+            const container = document.getElementById('patient-container');
+            
+            const patientCard = document.createElement('div');
+            patientCard.className = 'patient-card';
+            
+            patientCard.innerHTML = `
+                <div class="patient-header">
+                    👤 ${patient.ResidentName}
+                </div>
+                <div class="patient-info">
+                    <div class="info-grid">
+                        <div class="info-section">
+                            <div class="info-label">Date of Birth</div>
+                            <div class="info-value">${patient.BirthDate} (Age: ${patient.Age})</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Gender</div>
+                            <div class="info-value">${patient.Gender === 'M' ? 'Male' : 'Female'}</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Marital Status</div>
+                            <div class="info-value">${patient.MaritalStatusDesc}</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Admission Date</div>
+                            <div class="info-value">${patient.AdmitDate} at ${patient.AdmitTime}</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Admitted From</div>
+                            <div class="info-value">${patient.AdmittedFromDesc}</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">County</div>
+                            <div class="info-value">${patient.County}</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Advanced Directives</div>
+                            <div class="info-value">${patient.AdvancedDirectives}</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Admission ID</div>
+                            <div class="info-value">${patient.AdmissionID}</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Internal ID</div>
+                            <div class="info-value">${patient.InternalID}</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">SSN</div>
+                            <div class="info-value">${patient.SocSecNum}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="diagnosis-section">
+                        <div class="info-label">🏥 Primary Residence</div>
+                        <div class="info-value">${patient.PrimaryResidence}</div>
+                    </div>
+                    
+                    <div class="diagnosis-section">
+                        <div class="info-label">🩺 Admitting Diagnoses (ICD-10)</div>
+                        <div class="info-value">${patient.AdmittingDiagICD1}</div>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(patientCard);
+        }
+        
+        // Display the patient data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            displayPatient(patientData);
+        });
+    </script>
+</body>
+</html>

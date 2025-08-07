@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Medical Records - Test</title>
+    <link rel="stylesheet" href="styles/improved-medical-records.css">
+    <style>
+        /* Additional test-specific styling */
+        body {
+            margin: 0;
+            padding: 1rem;
+            background-color: #f8fafc;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .test-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .comparison-toggle {
+            margin: 1rem;
+            padding: 1rem;
+            background: #eff6ff;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+        
+        .toggle-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        
+        .toggle-button:hover {
+            background: #1d4ed8;
+        }
+        
+        .enhanced-view {
+            display: block;
+        }
+        
+        .original-view {
+            display: none;
+            padding: 1rem;
+            background: #f9fafb;
+            font-family: Arial;
+            font-size: 9pt;
+        }
+        
+        .original-view table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        .original-view th {
+            background-color: lightgrey;
+            font-size: 8pt;
+            border: 1px solid #666;
+            padding: 4px;
+        }
+        
+        .original-view td {
+            border: 1px solid #666;
+            padding: 4px;
+            font-size: 9pt;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>Enhanced Medical Records Layout - Test Version</h1>
+            <p>Demonstration of improved table layout for better readability</p>
+        </div>
+        
+        <div class="comparison-toggle">
+            <strong>Layout Comparison:</strong> 
+            <button class="toggle-button" onclick="toggleView('enhanced')">Enhanced Layout</button>
+            <button class="toggle-button" onclick="toggleView('original')">Original Layout</button>
+            <p style="margin-top: 0.5rem; margin-bottom: 0; font-size: 0.875rem; color: #64748b;">
+                Switch between the enhanced modern layout and the original table structure to see the improvements.
+            </p>
+        </div>
+        
+        <!-- Enhanced Layout View -->
+        <div id="enhanced-view" class="enhanced-view">
+            <!-- Enhanced Patient Header -->
+            <div class="patient-header">
+                <div class="resident-name">Russell, John D.</div>
+                <div class="patient-header-grid">
+                    <div class="patient-header-item">
+                        <div class="patient-header-label">Internal ID</div>
+                        <div class="patient-header-value">12345</div>
+                    </div>
+                    <div class="patient-header-item">
+                        <div class="patient-header-label">Location</div>
+                        <div class="patient-header-value">Room 101A - Wing B</div>
+                    </div>
+                    <div class="patient-header-item">
+                        <div class="patient-header-label">Admit Date</div>
+                        <div class="patient-header-value">01/15/2024</div>
+                    </div>
+                    <div class="patient-header-item">
+                        <div class="patient-header-label">Supervising Nurse</div>
+                        <div class="patient-header-value">J. Smith, RN</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced Patient Details -->
+            <div class="patient-details">
+                <div class="patient-details-row">
+                    <div class="detail-group">
+                        <div class="detail-label">Diagnoses</div>
+                        <div class="detail-value">
+                            <strong>Primary:</strong> Essential Hypertension (I10)<br>
+                            <strong>Secondary:</strong> Type 2 Diabetes Mellitus without complications (E11.9)
+                        </div>
+                    </div>
+                    <div class="detail-group">
+                        <div class="detail-label">Advance Directives</div>
+                        <div class="detail-value">DNR on file, Healthcare proxy designated to spouse</div>
+                    </div>
+                </div>
+                <div class="patient-details-row">
+                    <div class="detail-group critical">
+                        <div class="detail-label">Allergies</div>
+                        <div class="detail-value"><strong>Penicillin</strong> (severe reaction), <strong>Latex</strong> (mild skin reaction)</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="detail-group">
+                            <div class="detail-label">Preferred Pharmacy</div>
+                            <div class="detail-value">Main Street Pharmacy<br>123 Main St, City, ST 12345<br>Phone: (555) 123-4567</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Primary Physician</div>
+                            <div class="detail-value">Dr. Sarah Johnson, MD<br>Internal Medicine<br>City Medical Center</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced Medication Order #1 -->
+            <div class="orders-container">
+                <div class="orders-header">
+                    <div class="orders-title">Medication Administration Record</div>
+                    <div class="orders-meta">Order #1 of 3 for Russell, John D.</div>
+                </div>
+                
+                <div class="medication-info">
+                    <div class="medication-info-grid">
+                        <div>
+                            <div class="medication-primary">Lisinopril 10mg Tablet PO</div>
+                            <div class="medication-details">
+                                Generic: Lisinopril<br>
+                                Once daily at 08:00 Starting 01/15/2024<br>
+                                <strong>Administered by:</strong> Licensed Nurse
+                            </div>
+                        </div>
+                        <div class="medication-schedule">
+                            <div class="detail-label">Order Information</div>
+                            <div class="detail-value">
+                                <strong>Order ID:</strong> MED-2024-001<br>
+                                <strong>Order Date:</strong> 01/15/2024<br>
+                                <strong>Route:</strong> Oral
+                            </div>
+                        </div>
+                        <div class="medication-notes">
+                            <div class="detail-label">Notes & Instructions</div>
+                            <div class="detail-value">
+                                <strong>Notes:</strong> Monitor BP daily<br>
+                                <strong>Instructions:</strong> Take with food<br>
+                                <strong>Therapeutic Range:</strong> SBP 120-140 mmHg<br>
+                                <strong>Priority:</strong> Routine
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <table class="orders-table">
+                    <colgroup>
+                        <col class="marker-col" />
+                        <col class="schedule-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="marker-col">•</th>
+                            <th class="schedule-col">Schedule</th>
+                            <th>01</th><th>02</th><th>03</th><th>04</th><th>05</th><th>06</th><th>07</th><th>08</th><th>09</th><th>10</th>
+                            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th>
+                            <th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th>30</th><th>31</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="marker-col">○</td>
+                            <td class="schedule-col">08:00</td>
+                            <td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td>
+                            <td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td><td></td><td></td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Enhanced Medication Order #2 -->
+            <div class="orders-container">
+                <div class="orders-header">
+                    <div class="orders-title">PRN Medication</div>
+                    <div class="orders-meta">Order #2 of 3 for Russell, John D.</div>
+                </div>
+                
+                <div class="medication-info">
+                    <div class="medication-info-grid">
+                        <div>
+                            <div class="medication-primary">Acetaminophen 650mg Tablet PO</div>
+                            <div class="medication-details">
+                                Generic: Acetaminophen<br>
+                                PRN for pain or fever every 6 hours as needed<br>
+                                <strong>Administered by:</strong> Licensed Nurse
+                            </div>
+                        </div>
+                        <div class="medication-schedule">
+                            <div class="detail-label">Order Information</div>
+                            <div class="detail-value">
+                                <strong>Order ID:</strong> MED-2024-002<br>
+                                <strong>Order Date:</strong> 01/15/2024<br>
+                                <strong>Route:</strong> Oral
+                            </div>
+                        </div>
+                        <div class="medication-notes">
+                            <div class="detail-label">Notes & Instructions</div>
+                            <div class="detail-value">
+                                <strong>Notes:</strong> Max 4 doses per 24 hours<br>
+                                <strong>Instructions:</strong> For pain > 5/10 or fever > 100.4°F<br>
+                                <strong>Therapeutic Range:</strong> N/A<br>
+                                <strong>Priority:</strong> PRN
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <table class="orders-table">
+                    <colgroup>
+                        <col class="marker-col" />
+                        <col class="schedule-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="marker-col">•</th>
+                            <th class="schedule-col">Schedule</th>
+                            <th>01</th><th>02</th><th>03</th><th>04</th><th>05</th><th>06</th><th>07</th><th>08</th><th>09</th><th>10</th>
+                            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th>
+                            <th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th>30</th><th>31</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="prnrow">
+                            <td class="marker-col">PRN</td>
+                            <td class="schedule-col">Pain/Fever</td>
+                            <td></td><td></td><td>MJ</td><td></td><td></td><td></td><td>DB</td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Enhanced Signature Section -->
+            <div class="signature-section">
+                <div class="signature-header">Staff Signatures & Initials</div>
+                <div class="signature-grid">
+                    <div class="signature-pair">
+                        <div class="signature-line">John Smith, RN</div>
+                        <div class="signature-initials">JS</div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line">Mary Johnson, LPN</div>
+                        <div class="signature-initials">MJ</div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line">David Brown, RN</div>
+                        <div class="signature-initials">DB</div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line">Sarah Wilson, RN</div>
+                        <div class="signature-initials">SW</div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line"></div>
+                        <div class="signature-initials"></div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line"></div>
+                        <div class="signature-initials"></div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line"></div>
+                        <div class="signature-initials"></div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line"></div>
+                        <div class="signature-initials"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Original Layout View -->
+        <div id="original-view" class="original-view">
+            <h3>Original Table Structure (Before Enhancement)</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr>
+                    <th style="border: 1px solid black; padding: 4px; background: lightgrey;">Resident Name</th>
+                    <th style="border: 1px solid black; padding: 4px; background: lightgrey;">Internal ID</th>
+                    <th style="border: 1px solid black; padding: 4px; background: lightgrey;" colspan="3">Location</th>
+                    <th style="border: 1px solid black; padding: 4px; background: lightgrey;">Admit Date</th>
+                    <th style="border: 1px solid black; padding: 4px; background: lightgrey;" colspan="3">Supervising Nurse</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 4px;" colspan="2"><strong>Russell, John D.</strong></td>
+                    <td style="border: 1px solid black; padding: 4px;">12345</td>
+                    <td style="border: 1px solid black; padding: 4px;" colspan="3">Room 101A - Wing B</td>
+                    <td style="border: 1px solid black; padding: 4px;">01/15/2024</td>
+                    <td style="border: 1px solid black; padding: 4px;"></td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid black; padding: 4px; background: lightgrey;" colspan="6">Diagnoses</th>
+                    <th style="border: 1px solid black; padding: 4px; background: lightgrey;" colspan="4">Advance Directives</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 4px;" colspan="6">
+                        <strong>Primary:</strong> Essential Hypertension (I10) <strong>Secondary:</strong> Type 2 Diabetes Mellitus without complications (E11.9)
+                    </td>
+                    <td style="border: 1px solid black; padding: 4px;" colspan="4">DNR on file, Healthcare proxy designated to spouse</td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid black; padding: 4px; background: lightgrey;" colspan="6">Allergies</th>
+                    <th style="border: 1px solid black; padding: 4px; background: lightgrey;" colspan="2">Preferred Pharmacy</th>
+                    <th style="border: 1px solid black; padding: 4px; background: lightgrey;" colspan="2">Primary Physician</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 4px;" colspan="6">Penicillin (severe reaction), Latex (mild skin reaction)</td>
+                    <td style="border: 1px solid black; padding: 4px;" colspan="2">Main Street Pharmacy</td>
+                    <td style="border: 1px solid black; padding: 4px;" colspan="2">Dr. Sarah Johnson, MD</td>
+                </tr>
+            </table>
+            
+            <h4>Medication Orders (Original Table Format)</h4>
+            <table border="1" style="border-collapse: collapse; width: 100%; font-size: 8pt;">
+                <tr>
+                    <td colspan="33">
+                        <strong>Medication Administration Record #1 of 3</strong> (for Russell, John D.)<br>
+                        <strong>Lisinopril 10mg Tablet PO</strong> Generic: Lisinopril<br>
+                        Once daily at 08:00 Starting 01/15/2024
+                    </td>
+                </tr>
+                <tr>
+                    <th style="width: 2%;">•</th>
+                    <th style="width: 10%;">Schedule</th>
+                    <th>01</th><th>02</th><th>03</th><th>04</th><th>05</th><th>06</th><th>07</th><th>08</th><th>09</th><th>10</th>
+                    <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th>
+                    <th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th>30</th><th>31</th>
+                </tr>
+                <tr>
+                    <td>○</td><td>08:00</td>
+                    <td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td>
+                    <td>JS</td><td>JS</td><td>JS</td><td>JS</td><td>JS</td><td></td><td></td><td></td><td></td><td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+            </table>
+            
+            <p><em>This represents the original cramped table structure that was harder to read and less organized.</em></p>
+        </div>
+    </div>
+    
+    <script>
+        function toggleView(viewType) {
+            const enhancedView = document.getElementById('enhanced-view');
+            const originalView = document.getElementById('original-view');
+            
+            if (viewType === 'enhanced') {
+                enhancedView.style.display = 'block';
+                originalView.style.display = 'none';
+            } else {
+                enhancedView.style.display = 'none';
+                originalView.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

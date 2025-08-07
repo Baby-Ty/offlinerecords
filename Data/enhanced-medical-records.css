@@ -1,0 +1,573 @@
+/* Enhanced Medical Records Styling - Professional Clean Interface */
+/* Version 4.0 - Comprehensive Medical Records Enhancement */
+
+:root {
+    /* Professional Medical Color Palette */
+    --medical-primary: #2563eb;
+    --medical-primary-light: #3b82f6;
+    --medical-primary-dark: #1d4ed8;
+    --medical-secondary: #64748b;
+    --medical-accent: #059669;
+    --medical-warning: #d97706;
+    --medical-error: #dc2626;
+    --medical-success: #16a34a;
+    
+    /* Background Colors */
+    --medical-bg-primary: #ffffff;
+    --medical-bg-secondary: #f8fafc;
+    --medical-bg-muted: #f1f5f9;
+    --medical-bg-accent: #eff6ff;
+    
+    /* Border Colors */
+    --medical-border-primary: #e2e8f0;
+    --medical-border-secondary: #cbd5e1;
+    --medical-border-accent: #3b82f6;
+    
+    /* Text Colors */
+    --medical-text-primary: #1e293b;
+    --medical-text-secondary: #374151;
+    --medical-text-muted: #4b5563;
+    --medical-text-light: #6b7280;
+    
+    /* Typography */
+    --medical-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --medical-font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    --medical-font-size-xs: 0.75rem;
+    --medical-font-size-sm: 0.875rem;
+    --medical-font-size-base: 1rem;
+    --medical-font-size-lg: 1.125rem;
+    --medical-font-size-xl: 1.25rem;
+    --medical-font-size-2xl: 1.5rem;
+    --medical-line-height: 1.6;
+    
+    /* Spacing */
+    --medical-spacing-xs: 0.25rem;
+    --medical-spacing-sm: 0.5rem;
+    --medical-spacing-base: 1rem;
+    --medical-spacing-lg: 1.5rem;
+    --medical-spacing-xl: 2rem;
+    --medical-spacing-2xl: 3rem;
+    
+    /* Border Radius */
+    --medical-radius-sm: 0.25rem;
+    --medical-radius-base: 0.375rem;
+    --medical-radius-lg: 0.5rem;
+    --medical-radius-xl: 0.75rem;
+    
+    /* Shadows */
+    --medical-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --medical-shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --medical-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Transitions */
+    --medical-transition-base: 150ms ease-in-out;
+    --medical-transition-colors: color 150ms ease-in-out, background-color 150ms ease-in-out, border-color 150ms ease-in-out;
+}
+
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--medical-font-family) !important;
+    font-size: var(--medical-font-size-base) !important;
+    line-height: var(--medical-line-height) !important;
+    color: var(--medical-text-primary) !important;
+    background-color: var(--medical-bg-secondary) !important;
+    margin: 0 !important;
+    padding: var(--medical-spacing-base) !important;
+    border: none !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography enhancements */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--medical-font-family) !important;
+    font-weight: 600 !important;
+    color: var(--medical-text-primary) !important;
+    margin: var(--medical-spacing-lg) 0 var(--medical-spacing-base) 0 !important;
+    line-height: 1.3 !important;
+}
+
+h1 { font-size: var(--medical-font-size-2xl) !important; }
+h2 { font-size: var(--medical-font-size-xl) !important; }
+h3 { font-size: var(--medical-font-size-lg) !important; }
+
+/* Enhanced table styling */
+table {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    background-color: var(--medical-bg-primary) !important;
+    border-radius: var(--medical-radius-lg) !important;
+    box-shadow: var(--medical-shadow-base) !important;
+    margin: var(--medical-spacing-lg) 0 !important;
+    overflow: hidden !important;
+    font-size: var(--medical-font-size-sm) !important;
+    table-layout: auto !important;
+}
+
+/* Table headers */
+th {
+    background: linear-gradient(135deg, var(--medical-primary) 0%, var(--medical-primary-light) 100%) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    padding: var(--medical-spacing-base) var(--medical-spacing-sm) !important;
+    text-align: left !important;
+    font-size: var(--medical-font-size-sm) !important;
+    border: none !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.025em !important;
+    font-family: var(--medical-font-family) !important;
+}
+
+th:first-child {
+    border-top-left-radius: var(--medical-radius-lg) !important;
+}
+
+th:last-child {
+    border-top-right-radius: var(--medical-radius-lg) !important;
+}
+
+/* Table cells */
+td {
+    padding: var(--medical-spacing-sm) !important;
+    border-bottom: 1px solid var(--medical-border-primary) !important;
+    border-right: 1px solid var(--medical-border-primary) !important;
+    border-left: none !important;
+    border-top: none !important;
+    font-family: var(--medical-font-family) !important;
+    font-size: var(--medical-font-size-sm) !important;
+    vertical-align: top !important;
+    background-color: var(--medical-bg-primary) !important;
+    color: var(--medical-text-primary) !important;
+    transition: var(--medical-transition-colors) !important;
+}
+
+td:last-child {
+    border-right: none !important;
+}
+
+/* Row styling */
+tbody tr {
+    transition: var(--medical-transition-colors) !important;
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--medical-bg-muted) !important;
+}
+
+tbody tr:nth-child(even) td {
+    background-color: var(--medical-bg-muted) !important;
+}
+
+tbody tr:hover {
+    background-color: var(--medical-bg-accent) !important;
+}
+
+tbody tr:hover td {
+    background-color: var(--medical-bg-accent) !important;
+}
+
+tbody tr:last-child td:first-child {
+    border-bottom-left-radius: var(--medical-radius-lg) !important;
+}
+
+tbody tr:last-child td:last-child {
+    border-bottom-right-radius: var(--medical-radius-lg) !important;
+}
+
+tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* Form elements enhancement */
+input, select, textarea {
+    font-family: var(--medical-font-family) !important;
+    font-size: var(--medical-font-size-sm) !important;
+    padding: var(--medical-spacing-xs) var(--medical-spacing-sm) !important;
+    border: 1px solid var(--medical-border-secondary) !important;
+    border-radius: var(--medical-radius-base) !important;
+    background-color: var(--medical-bg-primary) !important;
+    color: var(--medical-text-primary) !important;
+    transition: var(--medical-transition-colors), box-shadow var(--medical-transition-base) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none !important;
+    border-color: var(--medical-primary) !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+}
+
+/* Links */
+a {
+    color: var(--medical-primary) !important;
+    text-decoration: none !important;
+    transition: var(--medical-transition-colors) !important;
+    cursor: pointer !important;
+}
+
+a:hover {
+    color: var(--medical-primary-dark) !important;
+    text-decoration: underline !important;
+}
+
+a:focus {
+    outline: 2px solid var(--medical-primary) !important;
+    outline-offset: 2px !important;
+    border-radius: var(--medical-radius-sm) !important;
+}
+
+/* Medical record specific enhancements */
+.Schedule {
+    text-align: center !important;
+    font-weight: 600 !important;
+    color: var(--medical-primary) !important;
+    font-family: var(--medical-font-mono) !important;
+    font-size: var(--medical-font-size-sm) !important;
+}
+
+.NewOrderTop {
+    border-top: 3px solid var(--medical-primary) !important;
+    border-left: 1px solid var(--medical-border-secondary) !important;
+    border-right: 1px solid var(--medical-border-secondary) !important;
+    border-bottom: 1px solid var(--medical-border-secondary) !important;
+    background: linear-gradient(135deg, var(--medical-bg-accent) 0%, var(--medical-bg-muted) 100%) !important;
+    font-weight: 600 !important;
+    padding: var(--medical-spacing-sm) !important;
+    color: var(--medical-text-primary) !important;
+}
+
+.TopAdminCell, .BotAdminCell {
+    border: 1px solid var(--medical-border-secondary) !important;
+    padding: var(--medical-spacing-sm) !important;
+    background-color: var(--medical-bg-primary) !important;
+    transition: var(--medical-transition-colors) !important;
+}
+
+.BotAdminCell {
+    border-bottom: 2px solid var(--medical-primary) !important;
+}
+
+.Footer {
+    padding-left: var(--medical-spacing-base) !important;
+    font-style: normal !important;
+    color: white !important;
+    font-size: var(--medical-font-size-xs) !important;
+    font-weight: 600 !important;
+}
+
+.SignLine {
+    border: 1px solid var(--medical-border-accent) !important;
+    height: 2.5rem !important;
+    background-color: var(--medical-bg-muted) !important;
+    border-radius: var(--medical-radius-base) !important;
+    position: relative !important;
+    margin: var(--medical-spacing-xs) 0 !important;
+}
+
+.SignLine::before {
+    content: "Digital Signature Required" !important;
+    position: absolute !important;
+    top: -1.5rem !important;
+    left: 0 !important;
+    font-size: var(--medical-font-size-xs) !important;
+    color: var(--medical-text-muted) !important;
+    font-weight: 500 !important;
+}
+
+/* Status and priority indicators */
+.status-active, .medication-active {
+    color: var(--medical-success) !important;
+    font-weight: 600 !important;
+}
+
+.status-warning, .medication-warning {
+    color: var(--medical-warning) !important;
+    font-weight: 600 !important;
+}
+
+.status-inactive, .medication-inactive {
+    color: var(--medical-text-muted) !important;
+    font-style: italic !important;
+}
+
+.status-error, .medication-error {
+    color: var(--medical-error) !important;
+    font-weight: 600 !important;
+}
+
+/* Medication-specific styling */
+.medication-time {
+    font-weight: 600 !important;
+    color: var(--medical-primary) !important;
+    text-align: center !important;
+    font-family: var(--medical-font-mono) !important;
+    background-color: var(--medical-bg-accent) !important;
+    padding: var(--medical-spacing-xs) !important;
+    border-radius: var(--medical-radius-sm) !important;
+}
+
+.medication-dose {
+    font-weight: 600 !important;
+    color: var(--medical-text-primary) !important;
+    font-family: var(--medical-font-mono) !important;
+}
+
+.medication-notes {
+    font-size: var(--medical-font-size-xs) !important;
+    color: var(--medical-text-secondary) !important;
+    font-style: italic !important;
+    margin-top: var(--medical-spacing-xs) !important;
+}
+
+/* Controls and interface elements */
+.controlsDiv {
+    border: 2px solid var(--medical-border-accent) !important;
+    background: linear-gradient(135deg, var(--medical-bg-primary) 0%, var(--medical-bg-muted) 100%) !important;
+    padding: var(--medical-spacing-lg) !important;
+    border-radius: var(--medical-radius-lg) !important;
+    box-shadow: var(--medical-shadow-lg) !important;
+    margin: var(--medical-spacing-xl) 0 !important;
+}
+
+/* Resident information styling */
+.resRecord {
+    background-color: var(--medical-bg-primary) !important;
+    border-radius: var(--medical-radius-lg) !important;
+    margin: var(--medical-spacing-lg) 0 !important;
+    box-shadow: var(--medical-shadow-base) !important;
+    overflow: hidden !important;
+}
+
+/* PRN and special medication rows */
+.prnrow {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
+    border: 1px solid var(--medical-warning) !important;
+    border-radius: var(--medical-radius-base) !important;
+    padding: var(--medical-spacing-sm) !important;
+    margin: var(--medical-spacing-xs) 0 !important;
+}
+
+/* Exception and alert styling */
+.AdminException {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%) !important;
+    border-left: 4px solid var(--medical-error) !important;
+    padding: var(--medical-spacing-sm) !important;
+    border-radius: var(--medical-radius-base) !important;
+}
+
+/* Physical monitoring styling */
+.PhysMonitor {
+    color: var(--medical-text-muted) !important;
+    font-size: var(--medical-font-size-xs) !important;
+    font-style: italic !important;
+}
+
+/* Single line cells */
+.SingleLineAdminCell {
+    border: 1px solid var(--medical-border-secondary) !important;
+    padding: var(--medical-spacing-xs) !important;
+    background-color: var(--medical-bg-muted) !important;
+}
+
+.SingleLineBlankAdminCell {
+    border-top: 1px solid var(--medical-border-secondary) !important;
+    border-bottom: 1px solid var(--medical-border-secondary) !important;
+    border-left: none !important;
+    border-right: none !important;
+    padding: var(--medical-spacing-xs) !important;
+}
+
+/* Print styling */
+@media print {
+    body {
+        background-color: white !important;
+        color: black !important;
+        font-size: 10pt !important;
+        padding: 0 !important;
+    }
+    
+    .controlsDiv {
+        display: none !important;
+    }
+    
+    table {
+        box-shadow: none !important;
+        border: 1px solid black !important;
+        page-break-inside: avoid !important;
+    }
+    
+    th {
+        background: #f0f0f0 !important;
+        color: black !important;
+    }
+    
+    tbody tr:nth-child(even) {
+        background-color: #f8f8f8 !important;
+    }
+    
+    tbody tr:nth-child(even) td {
+        background-color: #f8f8f8 !important;
+    }
+    
+    .resRecord {
+        page-break-inside: avoid !important;
+        margin: 0.5cm 0 !important;
+    }
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+    body {
+        padding: var(--medical-spacing-sm) !important;
+        font-size: var(--medical-font-size-sm) !important;
+    }
+    
+    table {
+        font-size: var(--medical-font-size-xs) !important;
+        margin: var(--medical-spacing-base) 0 !important;
+    }
+    
+    th, td {
+        padding: var(--medical-spacing-xs) !important;
+    }
+    
+    .controlsDiv {
+        padding: var(--medical-spacing-base) !important;
+        margin: var(--medical-spacing-base) 0 !important;
+    }
+    
+    /* Make large tables horizontally scrollable */
+    .table-responsive {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
+
+/* Enhanced accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-contrast: high) {
+    :root {
+        --medical-border-primary: #000000 !important;
+        --medical-text-primary: #000000 !important;
+        --medical-bg-primary: #ffffff !important;
+        --medical-bg-secondary: #ffffff !important;
+    }
+}
+
+/* Focus management for better accessibility */
+table:focus-within {
+    outline: 2px solid var(--medical-primary) !important;
+    outline-offset: 2px !important;
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.6 !important;
+    pointer-events: none !important;
+    position: relative !important;
+}
+
+.loading::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 24px !important;
+    height: 24px !important;
+    margin: -12px 0 0 -12px !important;
+    border: 2px solid var(--medical-border-primary) !important;
+    border-top: 2px solid var(--medical-primary) !important;
+    border-radius: 50% !important;
+    animation: medical-spin 1s linear infinite !important;
+}
+
+@keyframes medical-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Enhanced spacing utilities */
+.medical-spacing-none { margin: 0 !important; padding: 0 !important; }
+.medical-spacing-xs { margin: var(--medical-spacing-xs) !important; }
+.medical-spacing-sm { margin: var(--medical-spacing-sm) !important; }
+.medical-spacing-base { margin: var(--medical-spacing-base) !important; }
+.medical-spacing-lg { margin: var(--medical-spacing-lg) !important; }
+
+/* Data emphasis classes */
+.medical-data-highlight {
+    background-color: var(--medical-bg-accent) !important;
+    padding: var(--medical-spacing-xs) var(--medical-spacing-sm) !important;
+    border-radius: var(--medical-radius-sm) !important;
+    font-weight: 500 !important;
+}
+
+.medical-data-critical {
+    background-color: rgba(220, 38, 38, 0.1) !important;
+    color: var(--medical-error) !important;
+    padding: var(--medical-spacing-xs) var(--medical-spacing-sm) !important;
+    border-radius: var(--medical-radius-sm) !important;
+    font-weight: 600 !important;
+    border-left: 3px solid var(--medical-error) !important;
+}
+
+.medical-data-success {
+    background-color: rgba(22, 163, 74, 0.1) !important;
+    color: var(--medical-success) !important;
+    padding: var(--medical-spacing-xs) var(--medical-spacing-sm) !important;
+    border-radius: var(--medical-radius-sm) !important;
+    font-weight: 600 !important;
+    border-left: 3px solid var(--medical-success) !important;
+}
+
+/* ===================================================================== */
+/* TEXT CONTRAST FIXES - Ensure all text is clearly visible            */
+/* ===================================================================== */
+
+/* Override any light text colors with better contrast */
+td, th, p, div, span, li, label, .cell-content {
+    color: var(--medical-text-primary) !important;
+}
+
+/* Secondary text styling for less important content */
+.secondary-text, .subtitle, .description, .note {
+    color: var(--medical-text-secondary) !important;
+}
+
+/* Muted text for metadata and annotations */
+.muted-text, .comment, .PhysMonitor {
+    color: var(--medical-text-muted) !important;
+}
+
+/* Table cell text - ensure strong contrast */
+table td, table th {
+    color: var(--medical-text-primary) !important;
+}
+
+/* Specific overrides for any remaining light text */
+* {
+    color: inherit !important;
+}
+
+body * {
+    color: var(--medical-text-primary) !important;
+}
+
+/* Headers remain styled appropriately */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--medical-primary) !important;
+}
+

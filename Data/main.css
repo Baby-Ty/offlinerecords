@@ -1,0 +1,1067 @@
+/* Modern CSS with Custom Properties - Version 3.0 */
+:root {
+    /* Color Scheme */
+    --primary-color: #1976d2;
+    --primary-light: #42a5f5;
+    --primary-dark: #1565c0;
+    --secondary-color: #757575;
+    --accent-color: #ff5722;
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --error-color: #f44336;
+    
+    /* Neutral Colors */
+    --white: #ffffff;
+    --light-gray: #f5f5f5;
+    --medium-gray: #9e9e9e;
+    --dark-gray: #424242;
+    --black: #000000;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+    
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+    --font-size-3xl: 3rem;
+    
+    /* Borders & Shadows */
+    --border-radius: 0.5rem;
+    --border-radius-lg: 1rem;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-md: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    --shadow-lg: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease-in-out;
+    --transition-normal: 0.3s ease-in-out;
+    --transition-slow: 0.5s ease-in-out;
+}
+
+/* Modern CSS Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--dark-gray);
+    background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+    min-height: 100vh;
+}
+
+/* Screen Reader Only Content */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Page Header */
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: var(--white);
+    padding: var(--spacing-md) 0;
+    box-shadow: var(--shadow-md);
+}
+
+.PageTitle {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 var(--spacing-md);
+}
+
+.PageTitle h1 {
+    font-size: clamp(2rem, 8vw, 4rem);
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: var(--font-size-lg);
+    margin: var(--spacing-xs) 0 0 0;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+
+/* Main Content Area */
+.main-content {
+    flex: 1;
+    padding: var(--spacing-lg) 0;
+}
+
+.CTRBody {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.ContentCon {
+    width: 100%;
+}
+
+/* Modern Navigation Grid */
+.record-navigation {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Modern Button Design */
+.MainBTN {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--dark-gray);
+    min-height: 160px;
+    position: relative;
+    overflow: hidden;
+}
+
+.MainBTN::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left var(--transition-slow);
+}
+
+.MainBTN:hover::before {
+    left: 100%;
+}
+
+.MainBTN:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-dark);
+}
+
+.MainBTN:active {
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.btn-text {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--primary-dark);
+}
+
+.btn-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-color);
+    text-align: center;
+}
+
+/* Modern Footer */
+.app-footer {
+    background: var(--white);
+    border-top: 1px solid var(--medium-gray);
+    padding: var(--spacing-md);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+}
+
+.footer-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.LogoutBTN, .HelpBTN {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.LogoutBTN {
+    background: linear-gradient(135deg, var(--error-color) 0%, #d32f2f 100%);
+    background-image: url("LogOut.png");
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.LogoutBTN:hover {
+    background-image: url("LogOut_Clicked.png");
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+}
+
+.HelpBTN {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    background-image: url("Help.png");
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.HelpBTN:hover {
+    background-image: url("Help_Clicked.png");
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+}
+
+/* Record Selection Buttons */
+.record-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+}
+
+.role-instruction {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: var(--font-size-lg);
+    color: var(--secondary-color);
+    margin: 0 0 var(--spacing-md) 0;
+    padding: var(--spacing-sm);
+    background: var(--light-gray);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-color);
+}
+
+.SLTRecordBTN {
+    background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+    border: 2px solid var(--primary-light);
+    border-radius: var(--border-radius);
+    padding: 0;
+    text-align: center;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.SLTRecordBTN:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.SLTRecordBTN a {
+    display: block;
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    padding: var(--spacing-md);
+}
+
+.SLTRecordBTN:hover a {
+    color: var(--primary-color);
+}
+
+/* Modern Role Button Styling */
+.role-button {
+    min-height: 120px;
+}
+
+.role-btn-content {
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    gap: var(--spacing-xs);
+    transition: all var(--transition-normal);
+}
+
+.role-btn-content:hover {
+    background: rgba(25, 118, 210, 0.05);
+}
+
+.role-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.role-title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: 1px;
+}
+
+.role-description {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-color);
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Role Button Hover Effects */
+.SLTRecordBTN.role-button:hover .role-title {
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.SLTRecordBTN.role-button:hover .role-icon {
+    transform: scale(1.1);
+}
+
+/* Responsive Role Buttons */
+@media (max-width: 768px) {
+    .record-list {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--spacing-sm);
+    }
+    
+    .role-button {
+        min-height: 100px;
+    }
+    
+    .role-icon {
+        font-size: 1.5rem;
+    }
+    
+    .role-title {
+        font-size: var(--font-size-lg);
+    }
+    
+    .role-description {
+        font-size: 0.75rem;
+    }
+}
+
+/* Modern Modal Design */
+.PopupBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    width: min(90vw, 600px);
+    max-height: 80vh;
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    visibility: hidden;
+    opacity: 0;
+    transition: all var(--transition-normal);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.PopupBox.visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.PopupBox::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    backdrop-filter: blur(4px);
+}
+
+.PopupBoxCont {
+    padding: var(--spacing-lg);
+    max-height: calc(80vh - 80px);
+    overflow-y: auto;
+    background: var(--white);
+}
+
+.PopupBox h1, .PopupBox h2 {
+    color: var(--primary-dark);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+.PopupBox h1 {
+    font-size: var(--font-size-2xl);
+    border-bottom: 2px solid var(--primary-light);
+    padding-bottom: var(--spacing-sm);
+}
+
+.PopupBox h2 {
+    font-size: var(--font-size-xl);
+    margin-top: var(--spacing-lg);
+}
+
+.PopupBox h3 {
+    font-size: var(--font-size-lg);
+    color: var(--secondary-color);
+    margin-top: var(--spacing-md);
+}
+
+.PopupBox p {
+    margin: var(--spacing-sm) 0;
+    line-height: 1.6;
+}
+
+.PopupBox ul {
+    margin: var(--spacing-sm) 0;
+    padding-left: var(--spacing-lg);
+}
+
+.PopupBox li {
+    margin: var(--spacing-xs) 0;
+}
+
+.PopupBox kbd {
+    background: var(--light-gray);
+    border: 1px solid var(--medium-gray);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: monospace;
+    font-size: 0.875em;
+}
+
+
+
+/* Modern Close Button */
+.Close {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--error-color);
+    color: var(--white);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+}
+
+.Close:hover {
+    background: #d32f2f;
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+}
+
+.Close:active {
+    transform: scale(0.95);
+}
+
+/* Modern Loading States */
+.LoadingMSG {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-xl);
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all var(--transition-normal);
+    z-index: 1001;
+    min-width: 300px;
+}
+
+.LoadingMSG.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.LoadingMSG::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+    backdrop-filter: blur(4px);
+}
+
+.LoadingCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--light-gray);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+.LoadingMSG h2 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+}
+
+.LoadingMSG p {
+    margin: 0;
+    color: var(--secondary-color);
+    font-size: var(--font-size-base);
+}
+
+/* Enhanced Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: var(--spacing-md);
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out;
+    position: relative;
+    min-width: 0;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255,255,255,0.3) 50%,
+        transparent 100%
+    );
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Enhanced Loading States */
+.LoadingMSG.visible {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.LoadingCont {
+    animation: slideIn 0.4s ease-out 0.1s both;
+}
+
+/* Status indicators for better feedback */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.status-indicator.success {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--success-color);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.status-indicator.warning {
+    background-color: rgba(255, 152, 0, 0.1);
+    color: var(--warning-color);
+    border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.status-indicator.error {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: var(--error-color);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.status-indicator.info {
+    background-color: rgba(25, 118, 210, 0.1);
+    color: var(--primary-color);
+    border: 1px solid rgba(25, 118, 210, 0.3);
+}
+
+/* Modern Frame Container */
+#FrameCont {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--white);
+    visibility: hidden;
+    z-index: 999;
+    padding: var(--spacing-md);
+    box-sizing: border-box;
+}
+
+.record-frame-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#RecFrame {
+    flex: 1;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Error Message Styles */
+.error-message {
+    position: fixed;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background: var(--error-color);
+    color: var(--white);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    max-width: 400px;
+    z-index: 1002;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all var(--transition-normal);
+}
+
+.error-message.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.error-content {
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.error-content h3 {
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--error-color);
+}
+
+.retry-btn {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    transition: background var(--transition-normal);
+}
+
+.retry-btn:hover {
+    background: var(--primary-dark);
+}
+
+/* Enhanced Responsive Design */
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+    .record-navigation {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    
+    .MainBTN {
+        min-height: 140px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .page-header {
+        padding: var(--spacing-md) 0;
+    }
+    
+    .PageTitle {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .record-navigation {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .MainBTN {
+        min-height: 140px;
+        padding: var(--spacing-lg);
+        touch-action: manipulation; /* Improves touch responsiveness */
+    }
+    
+    .MainBTN:hover {
+        /* Reduce hover effects on touch devices */
+        transform: none;
+    }
+    
+    .MainBTN:active {
+        transform: scale(0.95);
+        background: rgba(25, 118, 210, 0.1);
+    }
+    
+    .btn-icon {
+        font-size: 2.2rem;
+    }
+    
+    .btn-text {
+        font-size: var(--font-size-xl);
+    }
+    
+    .PopupBox {
+        width: 95vw;
+        max-width: 95vw;
+        margin: var(--spacing-sm);
+        max-height: 90vh;
+    }
+    
+    .PopupBoxCont {
+        padding: var(--spacing-md);
+    }
+    
+    .footer-controls {
+        padding: 0 var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+    
+    .LogoutBTN, .HelpBTN {
+        width: 60px;
+        height: 60px;
+        touch-action: manipulation;
+    }
+    
+    .record-list {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .SLTRecordBTN {
+        min-height: 80px;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    :root {
+        --spacing-xs: 0.25rem;
+        --spacing-sm: 0.75rem;
+        --spacing-md: 1.5rem;
+        --spacing-lg: 2rem;
+    }
+    
+    .page-header {
+        padding: var(--spacing-sm) 0;
+    }
+    
+    .PageTitle h1 {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
+    
+    .subtitle {
+        font-size: var(--font-size-sm);
+    }
+    
+    .main-content {
+        padding: var(--spacing-md) 0;
+    }
+    
+    .CTRBody {
+        padding: 0 var(--spacing-xs);
+    }
+    
+    .record-navigation {
+        gap: var(--spacing-sm);
+    }
+    
+    .MainBTN {
+        min-height: 120px;
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius);
+    }
+    
+    .btn-icon {
+        font-size: 2rem;
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .btn-text {
+        font-size: var(--font-size-lg);
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .btn-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .PopupBox {
+        width: 98vw;
+        max-height: 95vh;
+        margin: 1vh auto;
+        border-radius: var(--border-radius);
+    }
+    
+    .PopupBoxCont {
+        padding: var(--spacing-sm);
+    }
+    
+    .Close {
+        width: 35px;
+        height: 35px;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        font-size: 1.2rem;
+    }
+    
+    .LogoutBTN, .HelpBTN {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .footer-controls {
+        justify-content: space-around;
+        padding: var(--spacing-sm);
+    }
+    
+    .LoadingMSG {
+        width: 95vw;
+        padding: var(--spacing-lg);
+    }
+    
+    .role-button {
+        min-height: 100px;
+    }
+    
+    .role-title {
+        font-size: var(--font-size-lg);
+    }
+    
+    .role-description {
+        font-size: 0.8rem;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .PageTitle h1 {
+        font-size: 1.5rem;
+    }
+    
+    .MainBTN {
+        min-height: 100px;
+        padding: var(--spacing-sm);
+    }
+    
+    .btn-icon {
+        font-size: 1.5rem;
+    }
+    
+    .btn-text {
+        font-size: var(--font-size-base);
+    }
+    
+    .btn-subtitle {
+        font-size: 0.7rem;
+    }
+}
+
+/* Touch-specific improvements */
+@media (hover: none) and (pointer: coarse) {
+    .MainBTN:hover::before {
+        display: none;
+    }
+    
+    .MainBTN:hover {
+        transform: none;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .MainBTN:active {
+        transform: scale(0.96);
+        transition: transform 0.1s ease-out;
+    }
+    
+    .SLTRecordBTN:hover {
+        transform: none;
+    }
+    
+    .SLTRecordBTN:active {
+        transform: scale(0.97);
+    }
+    
+    .LogoutBTN:hover,
+    .HelpBTN:hover {
+        transform: scale(1.05);
+    }
+    
+    .LogoutBTN:active,
+    .HelpBTN:active {
+        transform: scale(0.95);
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .btn-icon {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+    
+    .LogoutBTN,
+    .HelpBTN {
+        background-size: 70%;
+    }
+}
+
+/* Focus States for Accessibility */
+.MainBTN:focus,
+.SLTRecordBTN:focus,
+.LogoutBTN:focus,
+.HelpBTN:focus,
+.Close:focus {
+    outline: 3px solid var(--primary-light);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .app-footer,
+    .LogoutBTN,
+    .HelpBTN,
+    .PopupBox,
+    .LoadingMSG,
+    .error-message {
+        display: none !important;
+    }
+    
+    .page-header {
+        background: none !important;
+        color: var(--black) !important;
+        box-shadow: none !important;
+    }
+    
+    .MainBTN {
+        border: 2px solid var(--black) !important;
+        background: none !important;
+        box-shadow: none !important;
+    }
+}

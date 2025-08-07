@@ -1,0 +1,528 @@
+/* Improved Medical Records Layout - Enhanced Table Structure */
+/* Designed for better readability, usability, and professional presentation */
+
+:root {
+    /* Enhanced Medical Color Palette */
+    --medical-primary: #2563eb;
+    --medical-primary-light: #3b82f6;
+    --medical-primary-dark: #1d4ed8;
+    --medical-secondary: #64748b;
+    --medical-accent: #059669;
+    --medical-warning: #d97706;
+    --medical-error: #dc2626;
+    --medical-success: #16a34a;
+    
+    /* Enhanced Background Colors */
+    --medical-bg-primary: #ffffff;
+    --medical-bg-secondary: #f8fafc;
+    --medical-bg-muted: #f1f5f9;
+    --medical-bg-accent: #eff6ff;
+    --medical-bg-highlight: #fef3c7;
+    --medical-bg-critical: #fee2e2;
+    
+    /* Enhanced Border Colors */
+    --medical-border-primary: #e2e8f0;
+    --medical-border-secondary: #cbd5e1;
+    --medical-border-accent: #3b82f6;
+    --medical-border-strong: #475569;
+    
+    /* Enhanced Typography */
+    --medical-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --medical-font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    
+    /* Enhanced Spacing */
+    --medical-spacing-xs: 0.25rem;
+    --medical-spacing-sm: 0.5rem;
+    --medical-spacing-base: 1rem;
+    --medical-spacing-lg: 1.5rem;
+    --medical-spacing-xl: 2rem;
+    
+    /* Enhanced Shadows */
+    --medical-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --medical-shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --medical-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Enhanced Border Radius */
+    --medical-radius-sm: 0.25rem;
+    --medical-radius-base: 0.375rem;
+    --medical-radius-lg: 0.5rem;
+    
+    /* Enhanced Transitions */
+    --medical-transition-fast: 0.15s ease-in-out;
+    --medical-transition-base: 0.25s ease-in-out;
+    --medical-transition-slow: 0.35s ease-in-out;
+}
+
+/* =============================================================================
+   ENHANCED PATIENT HEADER SECTION
+   ============================================================================= */
+
+.patient-header {
+    background: linear-gradient(135deg, var(--medical-primary) 0%, var(--medical-primary-light) 100%) !important;
+    color: white !important;
+    padding: var(--medical-spacing-lg) !important;
+    border-radius: var(--medical-radius-lg) var(--medical-radius-lg) 0 0 !important;
+    margin-bottom: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.patient-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(25%, -25%);
+}
+
+.patient-header .resident-name {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    margin-bottom: var(--medical-spacing-sm) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.patient-header-grid {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr 2fr 1fr !important;
+    gap: var(--medical-spacing-lg) !important;
+    align-items: center !important;
+}
+
+.patient-header-item {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.patient-header-label {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    opacity: 0.9 !important;
+    margin-bottom: var(--medical-spacing-xs) !important;
+}
+
+.patient-header-value {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    font-family: var(--medical-font-mono) !important;
+}
+
+/* =============================================================================
+   ENHANCED PATIENT DETAILS SECTION
+   ============================================================================= */
+
+.patient-details {
+    background: var(--medical-bg-primary) !important;
+    border: 1px solid var(--medical-border-primary) !important;
+    border-top: none !important;
+    padding: 0 !important;
+    border-radius: 0 0 var(--medical-radius-lg) var(--medical-radius-lg) !important;
+    overflow: hidden !important;
+}
+
+.patient-details-grid {
+    display: grid !important;
+    grid-template-columns: 3fr 2fr !important;
+    border-bottom: 1px solid var(--medical-border-primary) !important;
+}
+
+.patient-details-section {
+    padding: var(--medical-spacing-lg) !important;
+    border-right: 1px solid var(--medical-border-primary) !important;
+}
+
+.patient-details-section:last-child {
+    border-right: none !important;
+}
+
+.patient-details-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: var(--medical-spacing-lg) !important;
+    padding: var(--medical-spacing-lg) !important;
+    border-bottom: 1px solid var(--medical-border-primary) !important;
+}
+
+.patient-details-row:last-child {
+    border-bottom: none !important;
+}
+
+.detail-group {
+    background: var(--medical-bg-secondary) !important;
+    padding: var(--medical-spacing-base) !important;
+    border-radius: var(--medical-radius-base) !important;
+    border-left: 3px solid var(--medical-accent) !important;
+}
+
+.detail-group.critical {
+    border-left-color: var(--medical-error) !important;
+    background: var(--medical-bg-critical) !important;
+}
+
+.detail-group.warning {
+    border-left-color: var(--medical-warning) !important;
+    background: var(--medical-bg-highlight) !important;
+}
+
+.detail-label {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--medical-text-secondary) !important;
+    margin-bottom: var(--medical-spacing-xs) !important;
+}
+
+.detail-value {
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: var(--medical-text-primary) !important;
+    line-height: 1.5 !important;
+}
+
+/* =============================================================================
+   ENHANCED ORDERS/MEDICATIONS TABLE
+   ============================================================================= */
+
+.orders-container {
+    margin: var(--medical-spacing-xl) 0 !important;
+    background: var(--medical-bg-primary) !important;
+    border-radius: var(--medical-radius-lg) !important;
+    box-shadow: var(--medical-shadow-lg) !important;
+    overflow: hidden !important;
+}
+
+.orders-header {
+    background: linear-gradient(135deg, var(--medical-secondary) 0%, #475569 100%) !important;
+    color: white !important;
+    padding: var(--medical-spacing-lg) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.orders-title {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+}
+
+.orders-meta {
+    font-size: 0.875rem !important;
+    opacity: 0.9 !important;
+    font-family: var(--medical-font-mono) !important;
+}
+
+.orders-table {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    background: var(--medical-bg-primary) !important;
+    font-size: 0.75rem !important;
+    table-layout: fixed !important;
+}
+
+/* Enhanced medication description area */
+.medication-info {
+    background: var(--medical-bg-accent) !important;
+    padding: var(--medical-spacing-base) !important;
+    border-bottom: 2px solid var(--medical-border-accent) !important;
+}
+
+.medication-info-grid {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr 1fr !important;
+    gap: var(--medical-spacing-base) !important;
+    align-items: start !important;
+}
+
+.medication-primary {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    color: var(--medical-text-primary) !important;
+    margin-bottom: var(--medical-spacing-xs) !important;
+}
+
+.medication-details {
+    font-size: 0.75rem !important;
+    color: var(--medical-text-secondary) !important;
+    line-height: 1.4 !important;
+}
+
+.medication-schedule {
+    background: white !important;
+    padding: var(--medical-spacing-sm) !important;
+    border-radius: var(--medical-radius-sm) !important;
+    border: 1px solid var(--medical-border-primary) !important;
+    text-align: center !important;
+}
+
+.medication-notes {
+    background: white !important;
+    padding: var(--medical-spacing-sm) !important;
+    border-radius: var(--medical-radius-sm) !important;
+    border: 1px solid var(--medical-border-primary) !important;
+}
+
+/* Enhanced daily tracking columns */
+.orders-table th {
+    background: var(--medical-primary) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    padding: var(--medical-spacing-sm) var(--medical-spacing-xs) !important;
+    text-align: center !important;
+    font-size: 0.7rem !important;
+    border: none !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+    width: 2.5rem !important;
+}
+
+.orders-table th.schedule-col {
+    width: 8rem !important;
+    text-align: left !important;
+    padding-left: var(--medical-spacing-sm) !important;
+    background: var(--medical-primary-dark) !important;
+}
+
+.orders-table th.marker-col {
+    width: 1.5rem !important;
+    background: var(--medical-secondary) !important;
+}
+
+.orders-table td {
+    padding: var(--medical-spacing-xs) !important;
+    border-right: 1px solid var(--medical-border-primary) !important;
+    border-bottom: 1px solid var(--medical-border-primary) !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    font-family: var(--medical-font-mono) !important;
+    font-size: 0.7rem !important;
+    min-height: 2rem !important;
+    background: var(--medical-bg-primary) !important;
+    transition: var(--medical-transition-fast) !important;
+}
+
+.orders-table td:hover {
+    background: var(--medical-bg-accent) !important;
+}
+
+.orders-table td.schedule-col {
+    text-align: left !important;
+    padding-left: var(--medical-spacing-sm) !important;
+    font-weight: 500 !important;
+    background: var(--medical-bg-secondary) !important;
+    border-right: 2px solid var(--medical-border-accent) !important;
+}
+
+.orders-table td.marker-col {
+    background: var(--medical-bg-muted) !important;
+    border-right: 2px solid var(--medical-border-secondary) !important;
+}
+
+.orders-table td:last-child {
+    border-right: none !important;
+}
+
+/* Enhanced row striping for better readability */
+.orders-table tbody tr:nth-child(even) td {
+    background: var(--medical-bg-secondary) !important;
+}
+
+.orders-table tbody tr:nth-child(even) td.schedule-col {
+    background: var(--medical-bg-muted) !important;
+}
+
+.orders-table tbody tr:nth-child(even) td:hover {
+    background: var(--medical-bg-accent) !important;
+}
+
+/* PRN and special medication styling */
+.prnrow td {
+    background: var(--medical-bg-highlight) !important;
+    border-color: var(--medical-warning) !important;
+}
+
+.AdminException td {
+    background: var(--medical-bg-critical) !important;
+    border-color: var(--medical-error) !important;
+    font-weight: 500 !important;
+}
+
+/* =============================================================================
+   ENHANCED SIGNATURE SECTION
+   ============================================================================= */
+
+.signature-section {
+    background: var(--medical-bg-primary) !important;
+    border: 1px solid var(--medical-border-primary) !important;
+    border-radius: var(--medical-radius-lg) !important;
+    margin: var(--medical-spacing-xl) 0 !important;
+    overflow: hidden !important;
+    box-shadow: var(--medical-shadow-base) !important;
+}
+
+.signature-header {
+    background: var(--medical-secondary) !important;
+    color: white !important;
+    padding: var(--medical-spacing-base) var(--medical-spacing-lg) !important;
+    font-weight: 600 !important;
+    font-size: 0.875rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+
+.signature-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1px !important;
+    background: var(--medical-border-primary) !important;
+    padding: 1px !important;
+}
+
+.signature-pair {
+    background: var(--medical-bg-primary) !important;
+    padding: var(--medical-spacing-sm) !important;
+    display: grid !important;
+    grid-template-columns: 3fr 1fr !important;
+    gap: var(--medical-spacing-xs) !important;
+    align-items: center !important;
+    min-height: 3rem !important;
+}
+
+.signature-line {
+    border-bottom: 1px solid var(--medical-border-secondary) !important;
+    padding: var(--medical-spacing-xs) 0 !important;
+    font-size: 0.75rem !important;
+    font-family: var(--medical-font-mono) !important;
+    color: var(--medical-text-secondary) !important;
+}
+
+.signature-initials {
+    border-bottom: 1px solid var(--medical-border-secondary) !important;
+    padding: var(--medical-spacing-xs) 0 !important;
+    text-align: center !important;
+    font-size: 0.75rem !important;
+    font-family: var(--medical-font-mono) !important;
+    font-weight: 600 !important;
+    color: var(--medical-text-primary) !important;
+}
+
+/* =============================================================================
+   ENHANCED RESPONSIVE DESIGN
+   ============================================================================= */
+
+@media (max-width: 1200px) {
+    .patient-header-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: var(--medical-spacing-base) !important;
+    }
+    
+    .medication-info-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--medical-spacing-sm) !important;
+    }
+    
+    .orders-table th, .orders-table td {
+        font-size: 0.65rem !important;
+        padding: 2px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .patient-details-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .patient-details-row {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .signature-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .orders-table {
+        font-size: 0.6rem !important;
+    }
+}
+
+/* =============================================================================
+   ENHANCED PRINT STYLES
+   ============================================================================= */
+
+@media print {
+    :root {
+        --medical-primary: #000000 !important;
+        --medical-bg-primary: #ffffff !important;
+        --medical-bg-secondary: #f5f5f5 !important;
+    }
+    
+    .patient-header {
+        background: #f0f0f0 !important;
+        color: #000000 !important;
+        border: 2px solid #000000 !important;
+    }
+    
+    .orders-header {
+        background: #e0e0e0 !important;
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
+    }
+    
+    .orders-table th {
+        background: #e0e0e0 !important;
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
+    }
+    
+    .orders-table td {
+        border: 1px solid #666666 !important;
+    }
+    
+    .signature-section {
+        break-inside: avoid !important;
+    }
+    
+    .orders-container {
+        break-inside: avoid !important;
+    }
+}
+
+/* =============================================================================
+   ENHANCED ACCESSIBILITY
+   ============================================================================= */
+
+/* Focus indicators for better keyboard navigation */
+.orders-table td:focus,
+.signature-line:focus,
+.signature-initials:focus {
+    outline: 2px solid var(--medical-accent) !important;
+    outline-offset: 2px !important;
+    background: var(--medical-bg-accent) !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --medical-border-primary: #000000;
+        --medical-border-secondary: #333333;
+        --medical-text-primary: #000000;
+        --medical-text-secondary: #333333;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Configuration Loading</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>DR Interface Configuration Test</h1>
+    <div id="test-results"></div>
+    
+    <script>
+        async function testConfiguration() {
+            const resultsDiv = document.getElementById('test-results');
+            
+            try {
+                // Test 1: Load configuration file
+                resultsDiv.innerHTML += '<div class="test-result info">Testing configuration file loading...</div>';
+                
+                const response = await fetch('./Data/record-config.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const configData = await response.json();
+                resultsDiv.innerHTML += '<div class="test-result success">✓ Configuration file loaded successfully</div>';
+                
+                // Test 2: Validate structure
+                resultsDiv.innerHTML += '<div class="test-result info">Validating configuration structure...</div>';
+                
+                if (!configData.records) {
+                    throw new Error('Configuration missing records object');
+                }
+                
+                const expectedTypes = ['MARS', 'TARS', 'FaceSheets', 'Orders'];
+                const missingTypes = expectedTypes.filter(type => !configData.records[type]);
+                
+                if (missingTypes.length > 0) {
+                    throw new Error(`Missing record types: ${missingTypes.join(', ')}`);
+                }
+                
+                resultsDiv.innerHTML += '<div class="test-result success">✓ All required record types found</div>';
+                
+                // Test 3: Check each record type has entries
+                let totalRecords = 0;
+                for (const [type, records] of Object.entries(configData.records)) {
+                    if (!Array.isArray(records) || records.length === 0) {
+                        throw new Error(`Record type ${type} has no entries`);
+                    }
+                    totalRecords += records.length;
+                    resultsDiv.innerHTML += `<div class="test-result success">✓ ${type}: ${records.length} records</div>`;
+                }
+                
+                resultsDiv.innerHTML += `<div class="test-result success">✓ Total records configured: ${totalRecords}</div>`;
+                
+                // Test 4: Show sample configuration
+                resultsDiv.innerHTML += '<div class="test-result info">Sample configuration structure:</div>';
+                resultsDiv.innerHTML += '<pre>' + JSON.stringify(configData, null, 2) + '</pre>';
+                
+                // Test 5: Verify file paths exist (if running locally)
+                resultsDiv.innerHTML += '<div class="test-result info">Testing file accessibility...</div>';
+                
+                let fileTestResults = '';
+                for (const [type, records] of Object.entries(configData.records)) {
+                    for (const record of records) {
+                        try {
+                            const fileResponse = await fetch(record.path);
+                            if (fileResponse.ok) {
+                                fileTestResults += `✓ ${record.name}: File accessible<br>`;
+                            } else {
+                                fileTestResults += `⚠ ${record.name}: File not accessible (${fileResponse.status})<br>`;
+                            }
+                        } catch (error) {
+                            fileTestResults += `✗ ${record.name}: File check failed<br>`;
+                        }
+                    }
+                }
+                
+                resultsDiv.innerHTML += `<div class="test-result info">${fileTestResults}</div>`;
+                
+                resultsDiv.innerHTML += '<div class="test-result success">🎉 Configuration test completed!</div>';
+                
+            } catch (error) {
+                resultsDiv.innerHTML += `<div class="test-result error">❌ Test failed: ${error.message}</div>`;
+                console.error('Configuration test error:', error);
+            }
+        }
+        
+        // Run test when page loads
+        window.addEventListener('load', testConfiguration);
+    </script>
+</body>
+</html>

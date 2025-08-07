@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Records Enhancement Test</title>
+    <link rel="stylesheet" href="Data/enhanced-medical-records.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8fafc;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .test-links a {
+            display: block;
+            padding: 15px;
+            background: var(--medical-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            text-align: center;
+            transition: background-color 0.2s;
+        }
+        .test-links a:hover {
+            background: var(--medical-primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-section">
+        <h1>Medical Records Enhancement Test Page</h1>
+        <p>This page allows you to test all the enhanced medical record displays. Click on any link below to view the professionally styled medical records.</p>
+        
+        <h2>✅ Enhancement Features Applied:</h2>
+        <ul>
+            <li><strong>Professional Color Scheme:</strong> Medical-grade blue and gray color palette</li>
+            <li><strong>Enhanced Typography:</strong> Improved font selection and sizing</li>
+            <li><strong>Responsive Tables:</strong> Mobile-friendly table layouts</li>
+            <li><strong>Interactive Elements:</strong> Hover effects and better visual feedback</li>
+            <li><strong>Accessibility:</strong> Improved contrast and screen reader support</li>
+            <li><strong>Modern Layout:</strong> Card-based design with proper spacing</li>
+        </ul>
+
+        <h2>📋 Test Medical Record Files:</h2>
+        <div class="test-links">
+            <!-- MARS Reports -->
+            <a href="offline data/RUSSLL_RC/MED_data.html">RUSSLL RC - MARS Report</a>
+            <a href="offline data/RUSSLL_LTC/MED_data.html">RUSSLL LTC - MARS Report</a>
+            <a href="offline data/RUSSLL_OP/MED_data.html">RUSSLL OP - MARS Report</a>
+            <a href="offline data/RUSSLL_DAY/MED_data.html">RUSSLL DAY - MARS Report</a>
+            
+            <!-- Face Sheets -->
+            <a href="offline data/RUSSLL_RC/Facesheet_data.html">RUSSLL RC - Face Sheet</a>
+            <a href="offline data/RUSSLL_LTC/Facesheet_data.html">RUSSLL LTC - Face Sheet</a>
+            <a href="offline data/RUSSLL_OP/Facesheet_data.html">RUSSLL OP - Face Sheet</a>
+            <a href="offline data/RUSSLL_DAY/Facesheet_data.html">RUSSLL DAY - Face Sheet</a>
+            
+            <!-- TRE Reports -->
+            <a href="offline data/RUSSLL_RC/TRE_data.html">RUSSLL RC - TRE Report</a>
+            <a href="offline data/RUSSLL_LTC/TRE_data.html">RUSSLL LTC - TRE Report</a>
+            <a href="offline data/RUSSLL_OP/TRE_data.html">RUSSLL OP - TRE Report</a>
+            <a href="offline data/RUSSLL_DAY/TRE_data.html">RUSSLL DAY - TRE Report</a>
+            
+            <!-- Other Data -->
+            <a href="offline data/RUSSLL_RC/Oth_data.html">RUSSLL RC - Other Data</a>
+            <a href="offline data/RUSSLL_LTC/Oth_data.html">RUSSLL LTC - Other Data</a>
+            <a href="offline data/RUSSLL_OP/Oth_data.html">RUSSLL OP - Other Data</a>
+            <a href="offline data/RUSSLL_DAY/Oth_data.html">RUSSLL DAY - Other Data</a>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📱 Responsive Design Test</h2>
+        <p>To test the responsive design:</p>
+        <ol>
+            <li>Resize your browser window to different widths</li>
+            <li>Use browser developer tools to simulate mobile devices</li>
+            <li>Check that tables remain readable on smaller screens</li>
+            <li>Verify that text remains legible and buttons are touchable</li>
+        </ol>
+    </div>
+
+    <script src="scripts/enhance-medical-records.js"></script>
+</body>
+</html>
+

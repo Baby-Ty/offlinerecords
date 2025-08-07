@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Medical Records - New Interface Demo</title>
+    <link rel="stylesheet" href="styles/modern.css">
+    <style>
+        .demo-banner {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: var(--space-4) 0;
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+        
+        .demo-banner h2 {
+            margin: 0;
+            font-size: var(--text-xl);
+            font-weight: 600;
+        }
+        
+        .demo-banner p {
+            margin: var(--space-2) 0 0 0;
+            opacity: 0.9;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            margin: var(--space-8) 0;
+            padding: var(--space-6);
+            background: var(--gray-50);
+            border-radius: var(--radius-xl);
+        }
+        
+        .comparison-item h3 {
+            color: var(--gray-900);
+            margin-bottom: var(--space-3);
+            font-size: var(--text-lg);
+        }
+        
+        .comparison-item {
+            background: var(--white);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            margin-bottom: var(--space-2);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .feature-list li::before {
+            content: '✅';
+            font-size: var(--text-sm);
+        }
+        
+        .old-features li::before {
+            content: '📋';
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: var(--space-8) 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            border-radius: var(--radius-xl);
+            margin: var(--space-8) 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary);
+            padding: var(--space-4) var(--space-6);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: var(--text-lg);
+            transition: var(--transition);
+            margin-top: var(--space-4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Anonymized Data Notice -->
+    <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 12px 0; text-align: center; font-size: 14px; font-weight: 500;">
+        🔒 <strong>DEMO MODE</strong> - All patient data shown is fictional and anonymized for demonstration purposes
+    </div>
+
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        <div class="container">
+            <h2>🚀 New Emergency Medical Records Interface</h2>
+            <p>Modern, clean, and fast interface designed from the ground up</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1 class="title">Emergency Records</h1>
+                    <p class="subtitle">Redesigned for Speed & Simplicity</p>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-dot offline"></div>
+                    <span class="status-text">Demo Mode</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Introduction -->
+            <section style="text-align: center; margin-bottom: var(--space-12);">
+                <h2 class="section-title">A Complete Redesign</h2>
+                <p style="font-size: var(--text-lg); color: var(--gray-600); max-width: 600px; margin: 0 auto;">
+                    The new Emergency Medical Records interface has been built from scratch with modern web technologies, 
+                    focusing on speed, simplicity, and ease of use during critical moments.
+                </p>
+            </section>
+
+            <!-- Comparison -->
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>Original Interface</h3>
+                    <ul class="feature-list old-features">
+                        <li>Complex navigation structure</li>
+                        <li>Multiple modal dialogs</li>
+                        <li>Dense information layout</li>
+                        <li>Traditional design patterns</li>
+                        <li>Limited mobile support</li>
+                        <li>Basic search functionality</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-item">
+                    <h3>New Modern Interface</h3>
+                    <ul class="feature-list">
+                        <li>Clean card-based navigation</li>
+                        <li>Step-by-step workflow</li>
+                        <li>Visual facility indicators</li>
+                        <li>Modern responsive design</li>
+                        <li>Mobile-first approach</li>
+                        <li>Direct record access</li>
+                        <li>Keyboard shortcuts</li>
+                        <li>Smooth animations & transitions</li>
+                        <li>Better accessibility</li>
+                        <li>Loading states & feedback</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Key Features -->
+            <section style="margin-bottom: var(--space-12);">
+                <h2 class="section-title">Key Improvements</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6);">
+                    <div class="comparison-item">
+                        <h3>🎯 Intuitive Navigation</h3>
+                        <p>Clear visual hierarchy with facility cards, record type selection, and patient search - all in a logical flow.</p>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <h3>⚡ Fast Performance</h3>
+                        <p>Optimized loading, caching, and smooth transitions ensure quick access to critical patient information.</p>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <h3>📱 Mobile Ready</h3>
+                        <p>Fully responsive design that works perfectly on tablets and mobile devices used in medical environments.</p>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <h3>⚡ Instant Access</h3>
+                        <p>No searching required - records open immediately after selecting type and facility for maximum speed.</p>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <h3>♿ Accessible</h3>
+                        <p>Built with accessibility in mind - keyboard navigation, screen reader support, and proper focus management.</p>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <h3>🎨 Clean Design</h3>
+                        <p>Modern design system with consistent spacing, colors, and typography for reduced cognitive load.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h2 style="margin: 0; font-size: var(--text-3xl);">Ready to Try It?</h2>
+                <p style="margin: var(--space-2) 0 0 0; opacity: 0.9;">Experience the new interface with interactive demo data</p>
+                <a href="index_new.html" class="cta-button">Launch New Interface</a>
+            </div>
+
+            <!-- Instructions -->
+            <section style="margin-bottom: var(--space-12);">
+                <h2 class="section-title">How to Use</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4);">
+                    <div style="background: var(--white); padding: var(--space-6); border-radius: var(--radius-lg); box-shadow: var(--shadow); text-align: center;">
+                        <div style="font-size: var(--text-4xl); margin-bottom: var(--space-3);">1️⃣</div>
+                        <h3 style="margin-bottom: var(--space-2);">Pick Record Type</h3>
+                        <p style="color: var(--gray-600); font-size: var(--text-sm);">Select Face Sheets, MED, TRE, or OTH records</p>
+                    </div>
+                    
+                    <div style="background: var(--white); padding: var(--space-6); border-radius: var(--radius-lg); box-shadow: var(--shadow); text-align: center;">
+                        <div style="font-size: var(--text-4xl); margin-bottom: var(--space-3);">2️⃣</div>
+                        <h3 style="margin-bottom: var(--space-2);">Select Facility</h3>
+                        <p style="color: var(--gray-600); font-size: var(--text-sm);">Choose your facility and role from the visual cards</p>
+                    </div>
+                    
+                    <div style="background: var(--white); padding: var(--space-6); border-radius: var(--radius-lg); box-shadow: var(--shadow); text-align: center;">
+                        <div style="font-size: var(--text-4xl); margin-bottom: var(--space-3);">3️⃣</div>
+                        <h3 style="margin-bottom: var(--space-2);">Access Records</h3>
+                        <p style="color: var(--gray-600); font-size: var(--text-sm);">Records open automatically for viewing or printing</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>Emergency Medical Records Interface - Redesigned</p>
+                    <p class="timestamp">Demo Version - Built with Modern Web Standards</p>
+                </div>
+                <div class="footer-actions">
+                    <a href="index.html" style="background: var(--white); border: 1px solid var(--gray-300); color: var(--gray-700); padding: var(--space-2) var(--space-4); border-radius: var(--radius); text-decoration: none; font-size: var(--text-sm); font-weight: 500;">View Original</a>
+                    <a href="index_new.html" style="background: var(--primary); border: 1px solid var(--primary); color: var(--white); padding: var(--space-2) var(--space-4); border-radius: var(--radius); text-decoration: none; font-size: var(--text-sm); font-weight: 500;">Try New Interface</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

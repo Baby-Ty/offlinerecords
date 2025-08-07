@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCA DR Interface - Simple Records Viewer</title>
+    <link rel="stylesheet" href="./Data/main.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .record-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .record-category {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .category-header {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .mars { background: #e74c3c; }
+        .tars { background: #3498db; }
+        .facesheets { background: #2ecc71; }
+        .orders { background: #f39c12; }
+        
+        .facility-list {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .facility-item {
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .facility-item:last-child {
+            border-bottom: none;
+        }
+        
+        .facility-link {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #2c3e50;
+            transition: background-color 0.2s;
+        }
+        
+        .facility-link:hover {
+            background-color: #ecf0f1;
+        }
+        
+        .facility-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .facility-desc {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .return-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .return-btn:hover {
+            background: #7f8c8d;
+        }
+        
+        .status-message {
+            text-align: center;
+            padding: 20px;
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <a href="Index.html" class="return-btn">← Return to Main</a>
+    
+    <div class="header">
+        <h1>🏥 NCA Disaster Recovery Interface</h1>
+        <p>Direct Access to Medical Records</p>
+    </div>
+    
+    <div class="status-message">
+        ✅ <strong>All records are now accessible without loading delays!</strong><br>
+        Click any facility below to view medical records directly.
+    </div>
+    
+    <div class="record-grid">
+        <!-- MARS Records -->
+        <div class="record-category">
+            <div class="category-header mars">
+                💊 MARS
+                <div style="font-size: 14px; font-weight: normal; margin-top: 5px;">
+                    Medication Administration Records
+                </div>
+            </div>
+            <ul class="facility-list">
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_DAY/MED_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">☀️ Day Program</div>
+                        <div class="facility-desc">Daily medication administration</div>
+                    </a>
+                </li>
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_LTC/MED_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">🏥 Long Term Care</div>
+                        <div class="facility-desc">LTC medication records</div>
+                    </a>
+                </li>
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_OP/MED_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">🚶 Outpatient</div>
+                        <div class="facility-desc">Outpatient medication tracking</div>
+                    </a>
+                </li>
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_RC/MED_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">🏠 Residential Care</div>
+                        <div class="facility-desc">Residential medication management</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- TARS Records -->
+        <div class="record-category">
+            <div class="category-header tars">
+                🩺 TARS
+                <div style="font-size: 14px; font-weight: normal; margin-top: 5px;">
+                    Treatment Administration Records
+                </div>
+            </div>
+            <ul class="facility-list">
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_DAY/TRE_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">☀️ Day Program</div>
+                        <div class="facility-desc">Daily treatment records</div>
+                    </a>
+                </li>
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_LTC/TRE_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">🏥 Long Term Care</div>
+                        <div class="facility-desc">LTC treatment administration</div>
+                    </a>
+                </li>
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_OP/TRE_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">🚶 Outpatient</div>
+                        <div class="facility-desc">Outpatient treatments</div>
+                    </a>
+                </li>
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_RC/TRE_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">🏠 Residential Care</div>
+                        <div class="facility-desc">Residential treatment records</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Face Sheets -->
+        <div class="record-category">
+            <div class="category-header facesheets">
+                📋 Face Sheets
+                <div style="font-size: 14px; font-weight: normal; margin-top: 5px;">
+                    Patient Summary Information
+                </div>
+            </div>
+            <ul class="facility-list">
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_DAY/Facesheet_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">☀️ Day Program</div>
+                        <div class="facility-desc">Day program patient summaries</div>
+                    </a>
+                </li>
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_LTC/Facesheet_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">🏥 Long Term Care</div>
+                        <div class="facility-desc">LTC patient information</div>
+                    </a>
+                </li>
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_OP/Facesheet_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">🚶 Outpatient</div>
+                        <div class="facility-desc">Outpatient summaries</div>
+                    </a>
+                </li>
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_RC/Facesheet_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">🏠 Residential Care</div>
+                        <div class="facility-desc">Residential care summaries</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Orders -->
+        <div class="record-category">
+            <div class="category-header orders">
+                📝 Orders
+                <div style="font-size: 14px; font-weight: normal; margin-top: 5px;">
+                    Medical Orders & Prescriptions
+                </div>
+            </div>
+            <ul class="facility-list">
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_DAY/Oth_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">☀️ Day Program</div>
+                        <div class="facility-desc">Day program orders</div>
+                    </a>
+                </li>
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_LTC/Oth_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">🏥 Long Term Care</div>
+                        <div class="facility-desc">LTC medical orders</div>
+                    </a>
+                </li>
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_OP/Oth_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">🚶 Outpatient</div>
+                        <div class="facility-desc">Outpatient prescriptions</div>
+                    </a>
+                </li>
+                <li class="facility-item">
+                    <a href="offline data/RUSSLL_RC/Oth_data.html" class="facility-link" target="_blank">
+                        <div class="facility-name">🏠 Residential Care</div>
+                        <div class="facility-desc">Residential care orders</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px; color: #7f8c8d;">
+        <p><strong>NCA Disaster Recovery Interface</strong> - Direct Records Access</p>
+        <p>All medical records open in new tabs for easy navigation</p>
+    </div>
+</body>
+</html>

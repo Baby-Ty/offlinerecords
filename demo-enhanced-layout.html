@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Medical Records Layout - Demo</title>
+    <link rel="stylesheet" href="styles/improved-medical-records.css">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .demo-header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .demo-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .demo-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        .demo-content {
+            padding: 0;
+        }
+        
+        .comparison-note {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 1rem 2rem;
+            margin: 2rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: #1e293b;
+        }
+        
+        .legend-container {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem;
+        }
+        
+        .legend-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+        
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .legend-symbol {
+            width: 1.5rem;
+            height: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-weight: bold;
+            font-family: monospace;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+        }
+        
+        .injection-legend-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 1.5rem;
+            margin: 2rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .injection-sites-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .injection-site {
+            padding: 0.25rem 0.5rem;
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 0.75rem;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Anonymized Data Notice -->
+    <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 12px 0; text-align: center; font-size: 14px; font-weight: 500; margin-bottom: 2rem;">
+        🔒 <strong>DEMO MODE</strong> - All patient data shown is fictional and anonymized for demonstration purposes
+    </div>
+
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1 class="demo-title">Enhanced Medical Records Layout</h1>
+            <p class="demo-subtitle">Improved table structure for better readability and usability</p>
+        </div>
+        
+        <div class="demo-content">
+            <div class="comparison-note">
+                <strong>Layout Improvements:</strong> This enhanced design features better organized patient information, 
+                improved medication tracking tables, cleaner signature sections, and enhanced responsive design 
+                for better viewing across different devices and print formats.
+            </div>
+            
+            <!-- Enhanced Patient Header -->
+            <div class="patient-header">
+                <div class="resident-name">Anderson, Emily R</div>
+                <div class="patient-header-grid">
+                    <div class="patient-header-item">
+                        <div class="patient-header-label">Internal ID</div>
+                        <div class="patient-header-value">10001</div>
+                    </div>
+                    <div class="patient-header-item">
+                        <div class="patient-header-label">Location</div>
+                        <div class="patient-header-value">Room 201A</div>
+                    </div>
+                    <div class="patient-header-item">
+                        <div class="patient-header-label">Admit Date</div>
+                        <div class="patient-header-value">01/15/2024</div>
+                    </div>
+                    <div class="patient-header-item">
+                        <div class="patient-header-label">Supervising Nurse</div>
+                        <div class="patient-header-value">A. Johnson, RN</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced Patient Details -->
+            <div class="patient-details">
+                <div class="patient-details-row">
+                    <div class="detail-group">
+                        <div class="detail-label">Diagnoses</div>
+                        <div class="detail-value">
+                            <strong>Primary:</strong> Chronic Heart Failure (I50.9)<br>
+                            <strong>Secondary:</strong> Hypertension, Essential (I10)
+                        </div>
+                    </div>
+                    <div class="detail-group">
+                        <div class="detail-label">Advance Directives</div>
+                        <div class="detail-value">DNR on file, Healthcare proxy designated</div>
+                    </div>
+                </div>
+                <div class="patient-details-row">
+                    <div class="detail-group critical">
+                        <div class="detail-label">Allergies</div>
+                        <div class="detail-value">Shellfish (anaphylaxis), Latex (mild reaction)</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="detail-group">
+                            <div class="detail-label">Preferred Pharmacy</div>
+                            <div class="detail-value">Community Care Pharmacy<br>456 Healthcare Ave</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Primary Physician</div>
+                            <div class="detail-value">Dr. Carlos Martinez, MD<br>Cardiology Associates</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced Orders/Medications Section -->
+            <div class="orders-container">
+                <div class="orders-header">
+                    <div class="orders-title">Medication Administration Record</div>
+                    <div class="orders-meta">Order #1 of 3 for Anderson, Emily R</div>
+                </div>
+                
+                <div class="medication-info">
+                    <div class="medication-info-grid">
+                        <div>
+                            <div class="medication-primary">Lisinopril 10mg Tablet PO</div>
+                            <div class="medication-details">
+                                Generic: Lisinopril<br>
+                                Once daily at 08:00 Starting 01/15/2024<br>
+                                <strong>Administered by:</strong> Licensed Nurse
+                            </div>
+                        </div>
+                        <div class="medication-schedule">
+                            <div class="detail-label">Order Information</div>
+                            <div class="detail-value">
+                                <strong>Order ID:</strong> MED-2024-001<br>
+                                <strong>Order Date:</strong> 01/15/2024<br>
+                                <strong>Route:</strong> Oral
+                            </div>
+                        </div>
+                        <div class="medication-notes">
+                            <div class="detail-label">Notes & Instructions</div>
+                            <div class="detail-value">
+                                <strong>Notes:</strong> Monitor BP, target <140/90<br>
+                                <strong>Instructions:</strong> Take with food<br>
+                                <strong>Therapeutic Range:</strong> SBP 120-140<br>
+                                <strong>Priority:</strong> Routine
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <table class="orders-table">
+                    <colgroup>
+                        <col class="marker-col" />
+                        <col class="schedule-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" /><col class="day-col" /><col class="day-col" />
+                        <col class="day-col" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="marker-col">•</th>
+                            <th class="schedule-col">Schedule</th>
+                            <th>01</th><th>02</th><th>03</th><th>04</th><th>05</th><th>06</th>
+                            <th>07</th><th>08</th><th>09</th><th>10</th><th>11</th><th>12</th>
+                            <th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th>
+                            <th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th>
+                            <th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th>30</th>
+                            <th>31</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="marker-col">○</td>
+                            <td class="schedule-col">08:00</td>
+                            <td>AJ</td><td>AJ</td><td>AJ</td><td>AJ</td><td>AJ</td><td>AJ</td>
+                            <td>AJ</td><td>AJ</td><td>AJ</td><td>AJ</td><td>AJ</td><td>AJ</td>
+                            <td>AJ</td><td>AJ</td><td>AJ</td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="prnrow">
+                            <td class="marker-col">PRN</td>
+                            <td class="schedule-col">As needed</td>
+                            <td></td><td></td><td>CM</td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Enhanced Injection Sites and Legend -->
+            <div class="injection-legend-container">
+                <div class="injection-sites">
+                    <div class="detail-label">Injection Sites</div>
+                    <div class="injection-sites-grid">
+                        <div class="injection-site">RA</div>
+                        <div class="injection-site">LA</div>
+                        <div class="injection-site">RL</div>
+                        <div class="injection-site">LL</div>
+                        <div class="injection-site">RD</div>
+                        <div class="injection-site">LD</div>
+                        <div class="injection-site">RG</div>
+                        <div class="injection-site">LG</div>
+                    </div>
+                </div>
+                <div class="medication-legend">
+                    <div class="detail-label">Legend</div>
+                    <div class="legend-grid">
+                        <div class="legend-item">
+                            <span class="legend-symbol">⬜</span>
+                            <span class="legend-text">Not Scheduled</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-symbol">=</span>
+                            <span class="legend-text">Previously Scheduled</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-symbol">E</span>
+                            <span class="legend-text">End Date Reached</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced Signature Section -->
+            <div class="signature-section">
+                <div class="signature-header">Staff Signatures & Initials</div>
+                <div class="signature-grid">
+                    <div class="signature-pair">
+                        <div class="signature-line">Amanda Johnson, RN</div>
+                        <div class="signature-initials">AJ</div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line">Carlos Martinez, LPN</div>
+                        <div class="signature-initials">CM</div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line">Diana Thompson, RN</div>
+                        <div class="signature-initials">DT</div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line">Sarah Wilson, RN</div>
+                        <div class="signature-initials">SW</div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line"></div>
+                        <div class="signature-initials"></div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line"></div>
+                        <div class="signature-initials"></div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line"></div>
+                        <div class="signature-initials"></div>
+                    </div>
+                    <div class="signature-pair">
+                        <div class="signature-line"></div>
+                        <div class="signature-initials"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="legend-container">
+                <div class="legend-title">Key Improvements in This Enhanced Layout:</div>
+                <div class="legend-grid">
+                    <div class="legend-item">
+                        <span class="legend-symbol" style="background: #eff6ff; color: #2563eb;">1</span>
+                        <span class="legend-text">Modern gradient headers with better visual hierarchy</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-symbol" style="background: #f0fdf4; color: #16a34a;">2</span>
+                        <span class="legend-text">Organized patient information in logical groups</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-symbol" style="background: #fef3c7; color: #d97706;">3</span>
+                        <span class="legend-text">Enhanced medication tracking with better spacing</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-symbol" style="background: #fee2e2; color: #dc2626;">4</span>
+                        <span class="legend-text">Critical information highlighted (allergies)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-symbol" style="background: #f3f4f6; color: #374151;">5</span>
+                        <span class="legend-text">Improved responsive design for all devices</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-symbol" style="background: #faf5ff; color: #7c3aed;">6</span>
+                        <span class="legend-text">Professional print-friendly styling</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

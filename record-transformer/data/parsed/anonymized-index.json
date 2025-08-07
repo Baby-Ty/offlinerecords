@@ -1,0 +1,932 @@
+{
+  "lastUpdated": "2024-02-20T18:44:52.209Z",
+  "totalResidents": 84,
+  "facilitiesProcessed": 4,
+  "dataType": "DEMO_ANONYMIZED",
+  "residents": [
+    {
+      "ResidentID": "20001",
+      "Name": "Anderson, Emily R",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "20002",
+      "Name": "Williams, Robert J",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "20003",
+      "Name": "Johnson, Maria C",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "20004",
+      "Name": "Davis, Michael A",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "20005",
+      "Name": "Brown, Sarah L",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "20006",
+      "Name": "Miller, James K",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": false,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "20007",
+      "Name": "Garcia, Rosa M",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "20008",
+      "Name": "Thompson, Diana L",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "20009",
+      "Name": "Martinez, Carlos E",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "20010",
+      "Name": "Wilson, Kevin P",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "20011",
+      "Name": "Foster, Amanda S",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": false,
+        "treatments": false,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "20012",
+      "Name": "Clark, Jennifer R",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "20013",
+      "Name": "Rodriguez, Antonio M",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "20014",
+      "Name": "Lee, Patricia K",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "20015",
+      "Name": "Taylor, William F",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "20016",
+      "Name": "Jackson, Dorothy B",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "20017",
+      "Name": "White, Charles H",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "20018",
+      "Name": "Harris, Margaret L",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "20019",
+      "Name": "Martin, Joseph T",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "20020",
+      "Name": "Young, Betty J",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "20021",
+      "Name": "King, Richard E",
+      "facility": "PROTEA_LTC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "30001",
+      "Name": "Allen, Susan M",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "30002",
+      "Name": "Scott, David R",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "30003",
+      "Name": "Adams, Linda G",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "30004",
+      "Name": "Baker, Thomas N",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "30005",
+      "Name": "Green, Nancy C",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "30006",
+      "Name": "Phillips, Mark D",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "30007",
+      "Name": "Campbell, Carol A",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "30008",
+      "Name": "Parker, Steven L",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "30009",
+      "Name": "Evans, Helen P",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "30010",
+      "Name": "Edwards, Ronald K",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "30011",
+      "Name": "Collins, Barbara W",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "30012",
+      "Name": "Stewart, George V",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "30013",
+      "Name": "Sanchez, Marie F",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "30014",
+      "Name": "Morris, Paul B",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "30015",
+      "Name": "Rogers, Joyce S",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "30016",
+      "Name": "Reed, Frank J",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "30017",
+      "Name": "Cook, Diane T",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "30018",
+      "Name": "Morgan, Larry H",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "30019",
+      "Name": "Bell, Ruth M",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "30020",
+      "Name": "Murphy, Eugene R",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "30021",
+      "Name": "Bailey, Gloria C",
+      "facility": "PROTEA_RC",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "40001",
+      "Name": "Rivera, Juan A",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "40002",
+      "Name": "Cooper, Mary E",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "40003",
+      "Name": "Richardson, Jack L",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": false,
+        "treatments": false,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "40004",
+      "Name": "Cox, Janet K",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "40005",
+      "Name": "Ward, Dennis P",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "40006",
+      "Name": "Torres, Angela D",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "40007",
+      "Name": "Peterson, Wayne S",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": false,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "40008",
+      "Name": "Gray, Shirley N",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "40009",
+      "Name": "Ramirez, Victor M",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "40010",
+      "Name": "James, Donna F",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "40011",
+      "Name": "Watson, Harold G",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "40012",
+      "Name": "Brooks, Catherine V",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "40013",
+      "Name": "Kelly, Raymond T",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": false,
+        "treatments": false,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "40014",
+      "Name": "Sanders, Alice B",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "40015",
+      "Name": "Price, Gerald W",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "40016",
+      "Name": "Bennett, Phyllis R",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "40017",
+      "Name": "Wood, Arthur C",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "40018",
+      "Name": "Barnes, Janice L",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "40019",
+      "Name": "Ross, Carl D",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": false,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "40020",
+      "Name": "Henderson, Evelyn K",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "40021",
+      "Name": "Griffin, Lawrence J",
+      "facility": "PROTEA_OP",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "50001",
+      "Name": "Diaz, Carmen S",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "50002",
+      "Name": "Hayes, Roger P",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": false,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "50003",
+      "Name": "Myers, Beverly J",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "50004",
+      "Name": "Ford, Kenneth H",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "50005",
+      "Name": "Powell, Sharon T",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "50006",
+      "Name": "Long, Earl F",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "50007",
+      "Name": "Hughes, Joan M",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": false,
+        "treatments": false,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "50008",
+      "Name": "Flores, Albert R",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "50009",
+      "Name": "Washington, Ruby C",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "50010",
+      "Name": "Butler, Howard L",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "50011",
+      "Name": "Simmons, Irene B",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "50012",
+      "Name": "Foster, Walter G",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "50013",
+      "Name": "Gonzales, Martha D",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": false,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "50014",
+      "Name": "Bryant, Willie K",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "50015",
+      "Name": "Alexander, Frances E",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "50016",
+      "Name": "Russell, Claude V",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "50017",
+      "Name": "Griffin, Gladys W",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "50018",
+      "Name": "Hunter, Eugene N",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "50019",
+      "Name": "Warren, Mildred P",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": false,
+        "treatments": false,
+        "orders": false
+      }
+    },
+    {
+      "ResidentID": "50020",
+      "Name": "Webb, Arnold S",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": true
+      }
+    },
+    {
+      "ResidentID": "50021",
+      "Name": "Fields, Norma J",
+      "facility": "PROTEA_DAY",
+      "hasData": {
+        "facesheet": true,
+        "medications": true,
+        "treatments": true,
+        "orders": false
+      }
+    }
+  ]
+}

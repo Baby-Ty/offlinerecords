@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wing Toggle Cards Demo</title>
+    <link rel="stylesheet" href="styles/modern-record-controls.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 20px;
+            background: #f8fafc;
+        }
+        
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .demo-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .demo-section h2 {
+            margin-top: 0;
+            color: #1e293b;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .old-version {
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .old-list {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .old-list input {
+            margin-right: 8px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list .icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 style="text-align: center; color: #1e293b;">🎯 Wing Toggle Cards</h1>
+        <p style="text-align: center; font-size: 18px; color: #64748b; margin-bottom: 32px;">
+            Clean, visual wing selection instead of cluttered checkboxes
+        </p>
+        
+        <div class="comparison">
+            <!-- OLD VERSION -->
+            <div class="demo-section">
+                <h2 style="color: #dc2626;">❌ Old Checkbox List</h2>
+                <div class="old-version">
+                    <strong>Show or Hide Organizations:</strong><br><br>
+                    <div class="old-list">
+                        JCO\NCA\NCA Mgd\LA Mgd\Russell\RUSSLL LTC<br><br>
+                        <input type="checkbox" checked> F Wing<br>
+                        <input type="checkbox" checked> E Wing<br>
+                        <input type="checkbox" checked> D Wing<br>
+                    </div>
+                </div>
+                
+                <h4 style="color: #dc2626; margin-top: 16px;">❌ Problems:</h4>
+                <ul class="feature-list">
+                    <li><span class="icon">😞</span> Boring checkbox list</li>
+                    <li><span class="icon">📱</span> Hard to use on mobile</li>
+                    <li><span class="icon">👁️</span> Poor visual feedback</li>
+                    <li><span class="icon">🔍</span> Hard to see what's selected</li>
+                </ul>
+            </div>
+            
+            <!-- NEW VERSION -->
+            <div class="demo-section">
+                <h2 style="color: #059669;">✅ New Wing Cards</h2>
+                
+                <!-- Modern Wing Cards Demo -->
+                <div class="control-group">
+                    <h5>Wings</h5>
+                    <div class="org-controls">
+                        <div class="facility-title">Russell LTC</div>
+                        <div class="wing-cards">
+                            <div class="wing-card active" onclick="toggleWingDemo(this);" data-wing="F Wing">
+                                F Wing
+                            </div>
+                            <div class="wing-card active" onclick="toggleWingDemo(this);" data-wing="E Wing">
+                                E Wing
+                            </div>
+                            <div class="wing-card active" onclick="toggleWingDemo(this);" data-wing="D Wing">
+                                D Wing
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 style="color: #059669; margin-top: 16px;">✅ Improvements:</h4>
+                <ul class="feature-list">
+                    <li><span class="icon">🎨</span> Beautiful visual cards</li>
+                    <li><span class="icon">📱</span> Touch-friendly design</li>
+                    <li><span class="icon">✨</span> Clear active/inactive states</li>
+                    <li><span class="icon">👀</span> Instant visual feedback</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Interactive Demo -->
+        <div class="demo-section">
+            <h2>🎮 Try It Out - Click the Cards!</h2>
+            <p style="color: #64748b; margin-bottom: 20px;">
+                Click any wing card below to toggle it on/off. Notice the smooth animations and clear visual states.
+            </p>
+            
+            <div class="control-group">
+                <h5>Interactive Demo</h5>
+                <div class="org-controls">
+                    <div class="facility-title">Russell LTC Facility</div>
+                    <div class="wing-cards">
+                        <div class="wing-card active" onclick="toggleWingDemo(this);" data-wing="A Wing">
+                            A Wing
+                        </div>
+                        <div class="wing-card active" onclick="toggleWingDemo(this);" data-wing="B Wing">
+                            B Wing
+                        </div>
+                        <div class="wing-card active" onclick="toggleWingDemo(this);" data-wing="C Wing">
+                            C Wing
+                        </div>
+                        <div class="wing-card" onclick="toggleWingDemo(this);" data-wing="D Wing">
+                            D Wing
+                        </div>
+                        <div class="wing-card active" onclick="toggleWingDemo(this);" data-wing="E Wing">
+                            E Wing
+                        </div>
+                        <div class="wing-card" onclick="toggleWingDemo(this);" data-wing="F Wing">
+                            F Wing
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="selectionStatus" style="margin-top: 16px; padding: 12px; background: #f0f9ff; border-radius: 8px; font-size: 14px; color: #0369a1;">
+                Selected wings will be shown here...
+            </div>
+        </div>
+        
+        <!-- Features -->
+        <div class="demo-section">
+            <h2>🚀 Key Features</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+                <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981;">
+                    <h4 style="margin: 0 0 8px 0; color: #059669;">Visual Feedback</h4>
+                    <p style="margin: 0; font-size: 14px; color: #047857;">Clear blue highlighting and checkmarks show selected wings</p>
+                </div>
+                <div style="background: #eff6ff; padding: 16px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                    <h4 style="margin: 0 0 8px 0; color: #2563eb;">Touch Friendly</h4>
+                    <p style="margin: 0; font-size: 14px; color: #1d4ed8;">Large, easy-to-tap cards work great on tablets and phones</p>
+                </div>
+                <div style="background: #fdf4ff; padding: 16px; border-radius: 8px; border-left: 4px solid #a855f7;">
+                    <h4 style="margin: 0 0 8px 0; color: #9333ea;">Responsive Grid</h4>
+                    <p style="margin: 0; font-size: 14px; color: #7c3aed;">Automatically adapts to screen size for optimal layout</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleWingDemo(wingCard) {
+            // Toggle active state
+            wingCard.classList.toggle('active');
+            
+            // Update status display
+            updateSelectionStatus();
+        }
+        
+        function updateSelectionStatus() {
+            const activeWings = document.querySelectorAll('.wing-card.active');
+            const wingNames = Array.from(activeWings).map(card => card.getAttribute('data-wing') || card.textContent.trim());
+            
+            const statusDiv = document.getElementById('selectionStatus');
+            if (wingNames.length > 0) {
+                statusDiv.innerHTML = `<strong>Selected Wings:</strong> ${wingNames.join(', ')} <span style="color: #059669;">(${wingNames.length} active)</span>`;
+            } else {
+                statusDiv.innerHTML = '<strong>No wings selected</strong> <span style="color: #dc2626;">(All wings disabled)</span>';
+            }
+        }
+        
+        // Initialize status
+        updateSelectionStatus();
+    </script>
+</body>
+</html>

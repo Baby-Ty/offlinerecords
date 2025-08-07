@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+<head>
+<!-- Logan L. Levesque -->
+<!-- Version 2.0 -->
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="data/favicon.ico.png" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="./data/main.css"/>
+<title>Disaster Recovery Interface</title>
+<script type="text/javascript" src="data/Main.js"></script>
+</head>
+
+<body onload="ASNData()">
+
+<div class="PageTitle"><h1>NCA DR Interface</h1></div>
+<div class="CTRBody">
+<div class="ContentCon">
+<div class="MainBTN"><a href="javascript:void(0)" onclick="PopRecordBox('MARS')">View MARs</a></div>
+<div class="MainBTN"><a href="javascript:void(0)" onclick="PopRecordBox('TARS')">View TARs</a></div>
+<div class="MainBTN"><a href="javascript:void(0)" onclick="PopRecordBox('FaceSheets')">View Face Sheet</a></div>
+<div class="MainBTN"><a href="javascript:void(0)" onclick="PopRecordBox('Orders')">View Orders</a></div>
+</div>
+</div>
+
+<footer>
+<div class="LogoutBTN" onclick="LogOut()"></div>
+<div class="HelpBTN" onclick="ShowBox('Help')"></div>
+</footer>
+<div Class="PopupBox" id="SLTRecord"><div id="SLTRecordCont" class="PopupBoxCont"></div><div class="Close" onclick="CloseBox('SLTRecord')">X</div></div>
+<div class="PopupBox" id="Help"><div class="PopupBoxCont"><h1>Welcome</h1><p>Welcome to the North Country Associates Disaster Recovery Interface. 
+This interface is ment to be used during any pirode of time when your facility has lost network connectivity and can no longer access MARS, TARS or Face Sheets regularly.</p>
+<h2>Accessing Records</h2>
+<p>On this page you will find four buttons, one for MARS, one for TARS, one for orders, and one for Face Sheets. All records have been updated within the last hour that the facility had connectivity.
+To access a record close this popup, then click the button associated with the record type that you wish to view. This will will open the record selection menu where you can select the spacific record that you need.</p>
+</div>
+<div class="Close" onclick="CloseBox('Help')">X</div></div>
+<div class="LoadingMSG" id="LoadingMSG"><div Class="LoadingCont"><h2>Loading...</h2><p>Please wait, this may take several minutes.</p></div></div>
+</body>

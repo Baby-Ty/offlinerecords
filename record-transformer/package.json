@@ -1,0 +1,25 @@
+{
+  "name": "record-transformer",
+  "version": "1.0.0",
+  "description": "Medical records HTML-to-JSON transformation service",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "setup": "node setup.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cheerio": "^1.0.0-rc.12",
+    "chokidar": "^3.5.3",
+    "cors": "^2.8.5",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["medical", "records", "html", "json", "api"],
+  "author": "",
+  "license": "ISC"
+}

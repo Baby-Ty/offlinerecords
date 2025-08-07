@@ -1,0 +1,108 @@
+{
+  "records": {
+    "MARS": [
+      {
+        "name": "MARS DAY",
+        "path": "offline data/RUSSLL_DAY/MED_data.html",
+        "role": "DAY",
+        "description": "Day Program Medication Records"
+      },
+      {
+        "name": "MARS LTC", 
+        "path": "offline data/RUSSLL_LTC/MED_data.html",
+        "role": "LTC",
+        "description": "Long Term Care Medication Records"
+      },
+      {
+        "name": "MARS OP",
+        "path": "offline data/RUSSLL_OP/MED_data.html", 
+        "role": "OP",
+        "description": "Outpatient Medication Records"
+      },
+      {
+        "name": "MARS RC",
+        "path": "offline data/RUSSLL_RC/MED_data.html",
+        "role": "RC", 
+        "description": "Residential Care Medication Records"
+      }
+    ],
+    "TARS": [
+      {
+        "name": "TARS DAY",
+        "path": "offline data/RUSSLL_DAY/TRE_data.html",
+        "role": "DAY",
+        "description": "Day Program Treatment Records"
+      },
+      {
+        "name": "TARS LTC",
+        "path": "offline data/RUSSLL_LTC/TRE_data.html", 
+        "role": "LTC",
+        "description": "Long Term Care Treatment Records"
+      },
+      {
+        "name": "TARS OP",
+        "path": "offline data/RUSSLL_OP/TRE_data.html",
+        "role": "OP", 
+        "description": "Outpatient Treatment Records"
+      },
+      {
+        "name": "TARS RC",
+        "path": "offline data/RUSSLL_RC/TRE_data.html",
+        "role": "RC",
+        "description": "Residential Care Treatment Records"
+      }
+    ],
+    "FaceSheets": [
+      {
+        "name": "Face Sheets DAY",
+        "path": "offline data/RUSSLL_DAY/Facesheet_data.html",
+        "role": "DAY",
+        "description": "Day Program Patient Summary"
+      },
+      {
+        "name": "Face Sheets LTC",
+        "path": "offline data/RUSSLL_LTC/Facesheet_data.html",
+        "role": "LTC", 
+        "description": "Long Term Care Patient Summary"
+      },
+      {
+        "name": "Face Sheets OP",
+        "path": "offline data/RUSSLL_OP/Facesheet_data.html",
+        "role": "OP",
+        "description": "Outpatient Patient Summary"
+      },
+      {
+        "name": "Face Sheets RC", 
+        "path": "offline data/RUSSLL_RC/Facesheet_data.html",
+        "role": "RC",
+        "description": "Residential Care Patient Summary"
+      }
+    ],
+    "Orders": [
+      {
+        "name": "Orders DAY",
+        "path": "offline data/RUSSLL_DAY/Oth_data.html",
+        "role": "DAY", 
+        "description": "Day Program Medical Orders"
+      },
+      {
+        "name": "Orders LTC",
+        "path": "offline data/RUSSLL_LTC/Oth_data.html",
+        "role": "LTC",
+        "description": "Long Term Care Medical Orders"
+      },
+      {
+        "name": "Orders OP",
+        "path": "offline data/RUSSLL_OP/Oth_data.html",
+        "role": "OP",
+        "description": "Outpatient Medical Orders"
+      },
+      {
+        "name": "Orders RC",
+        "path": "offline data/RUSSLL_RC/Oth_data.html", 
+        "role": "RC",
+        "description": "Residential Care Medical Orders"
+      }
+    ]
+  }
+}

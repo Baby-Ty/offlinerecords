@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Logan L. Levesque -->
+    <!-- Version 3.0 - Modernized ViewData -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="View medical records data - NCA Disaster Recovery Interface">
+    <link rel="icon" href="data/favicon.ico.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="./data/Records.css">
+    <title>Medical Records - NCA DR Interface</title>
+    <script type="text/javascript" defer>
+        class RecordViewer {
+            constructor() {
+                this.init();
+            }
+
+            async init() {
+                try {
+                    await this.loadRecord();
+                } catch (error) {
+                    this.showError('Failed to load medical record', error);
+                }
+            }
+
+            async loadRecord() {
+                // Use sessionStorage instead of cookies for better security
+                const recordPath = sessionStorage.getItem('recordPath') || 
+                                 document.cookie.substring(document.cookie.indexOf("=") + 1);
+                
+                if (!recordPath) {
+                    throw new Error('No record path specified');
+                }
+
+                // Add loading delay for better UX
+                setTimeout(() => {
+                    this.createIframe(recordPath);
+                }, 100);
+            }
+
+            createIframe(path) {
+                const frameContainer = document.getElementById("FrameCont");
+                if (!frameContainer) {
+                    throw new Error('Frame container not found');
+                }
+
+                const iframe = document.createElement('iframe');
+                iframe.id = 'RecFrame';
+                iframe.style.width = '100%';
+                iframe.style.height = '700px';
+                iframe.src = path;
+                iframe.onload = () => this.onRecordLoaded();
+                iframe.onerror = () => this.showError('Failed to load medical record file');
+                
+                // Accessibility
+                iframe.title = 'Medical Record Data';
+                iframe.setAttribute('aria-label', 'Medical record content');
+
+                frameContainer.innerHTML = '';
+                frameContainer.appendChild(iframe);
+                frameContainer.style.visibility = 'visible';
+            }
+
+            onRecordLoaded() {
+                const titleElement = document.getElementById("TitleTXT");
+                const loadingElement = document.getElementById("LoadingMSG");
+                
+                if (titleElement) {
+                    titleElement.textContent = "NCA DR Interface";
+                }
+                if (loadingElement) {
+                    loadingElement.textContent = "";
+                    loadingElement.style.display = 'none';
+                }
+            }
+
+            showError(message, error = null) {
+                console.error('Record Viewer Error:', message, error);
+                
+                const loadingElement = document.getElementById("LoadingMSG");
+                if (loadingElement) {
+                    loadingElement.innerHTML = `
+                        <div class="error-content">
+                            <h3>Error Loading Record</h3>
+                            <p>${message}</p>
+                            <button onclick="window.history.back()" class="retry-btn">Go Back</button>
+                        </div>
+                    `;
+                    loadingElement.style.color = '#d32f2f';
+                }
+            }
+        }
+
+        // Initialize when page loads
+        let recordViewer;
+        
+        function LoadRec() {
+            recordViewer = new RecordViewer();
+        }
+
+        function LoadedData() {
+            recordViewer?.onRecordLoaded();
+        }
+    </script>
+</head>
+<body onload="LoadRec()">
+    <header class="Title">
+        <a href="index.html" class="return-btn" aria-label="Return to main interface">
+            <div>Return</div>
+        </a>
+        <h1 id="TitleTXT">Loading</h1>
+        <div id="LoadingMSG" class="loading-message" role="status" aria-live="polite">
+            <div class="loading-content">
+                <div class="loading-spinner" aria-hidden="true"></div>
+                <p>The medical record data is loading, this may take several minutes.</p>
+            </div>
+        </div>
+    </header>
+    
+    <main id="FrameCont" class="record-frame-container" role="main">
+        <!-- Medical record iframe will be loaded here -->
+    </main>
+</body>
+</html>

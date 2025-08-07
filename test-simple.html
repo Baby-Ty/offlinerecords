@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Wing Cards Test</title>
+    <link rel="stylesheet" href="styles/modern-record-controls.css">
+</head>
+<body>
+    <h1>Simple Wing Cards Test</h1>
+    
+    <!-- Test the wing cards without the complex medical record loading -->
+    <div class="modern-controls">
+        <div class="controls-header">
+            <h3 class="controls-title">Display Options</h3>
+            <button class="print-btn">🖨️ Print</button>
+        </div>
+        
+        <div class="controls-grid">
+            <div class="control-group">
+                <h5>Wings</h5>
+                <div class="org-controls" id="tblOrgList">
+                    <div class="facility-title">Russell LTC</div>
+                    <div class="wing-cards">
+                        <div class="wing-card active" onclick="toggleWingTest(this);" data-wing="A Wing">
+                            A Wing
+                        </div>
+                        <div class="wing-card active" onclick="toggleWingTest(this);" data-wing="B Wing">
+                            B Wing
+                        </div>
+                        <div class="wing-card active" onclick="toggleWingTest(this);" data-wing="C Wing">
+                            C Wing
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <h5>Test Info</h5>
+                <p style="font-size: 14px; color: #64748b;">
+                    If you can see and click these wing cards, the CSS and basic structure is working. 
+                    The issue is likely in the XML parsing or JavaScript loading chain.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleWingTest(wingCard) {
+            wingCard.classList.toggle('active');
+            console.log('Wing toggled:', wingCard.getAttribute('data-wing'), 'Active:', wingCard.classList.contains('active'));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+/* Modern Medical Records Styling - Version 3.0 */
+:root {
+    /* Medical Record Color Scheme */
+    --medical-primary: #1565c0;
+    --medical-secondary: #424242;
+    --medical-success: #2e7d32;
+    --medical-warning: #f57c00;
+    --medical-error: #c62828;
+    --medical-background: #fafafa;
+    --medical-surface: #ffffff;
+    --medical-border: #e0e0e0;
+    --medical-text: #333333;
+    --medical-text-secondary: #666666;
+    --medical-highlight: #e3f2fd;
+    
+    /* Modern Typography */
+    --medical-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --medical-font-size-sm: 0.875rem;
+    --medical-font-size-base: 1rem;
+    --medical-font-size-lg: 1.125rem;
+    --medical-font-size-xl: 1.25rem;
+    --medical-line-height: 1.6;
+    
+    /* Spacing */
+    --medical-spacing-xs: 0.25rem;
+    --medical-spacing-sm: 0.5rem;
+    --medical-spacing-md: 1rem;
+    --medical-spacing-lg: 1.5rem;
+    
+    /* Borders and Shadows */
+    --medical-border-radius: 4px;
+    --medical-border-width: 1px;
+    --medical-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --medical-shadow-lg: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--medical-font-family);
+    font-size: var(--medical-font-size-base);
+    line-height: var(--medical-line-height);
+    color: var(--medical-text);
+    background-color: var(--medical-background);
+    margin: 0;
+    padding: var(--medical-spacing-md);
+    border: none;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--medical-font-family);
+    color: var(--medical-primary);
+    font-weight: 600;
+    margin: var(--medical-spacing-lg) 0 var(--medical-spacing-md) 0;
+    line-height: 1.3;
+}
+
+h1 { font-size: var(--medical-font-size-xl); }
+h2 { font-size: var(--medical-font-size-lg); }
+h3 { font-size: var(--medical-font-size-base); margin: var(--medical-spacing-md) 0 var(--medical-spacing-sm) 0; }
+
+p {
+    margin: var(--medical-spacing-sm) 0;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--medical-surface);
+    box-shadow: var(--medical-shadow);
+    border-radius: var(--medical-border-radius);
+    overflow: hidden;
+    margin: var(--medical-spacing-md) 0;
+    font-size: var(--medical-font-size-base);
+}
+
+/* Table Headers */
+th {
+    background: linear-gradient(135deg, var(--medical-primary) 0%, #1976d2 100%);
+    color: white;
+    font-weight: 600;
+    padding: var(--medical-spacing-md);
+    text-align: left;
+    font-size: var(--medical-font-size-base);
+    border: none;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+th:first-child {
+    border-top-left-radius: var(--medical-border-radius);
+}
+
+th:last-child {
+    border-top-right-radius: var(--medical-border-radius);
+}
+
+/* Table Cells */
+td {
+    padding: var(--medical-spacing-md);
+    border-bottom: var(--medical-border-width) solid var(--medical-border);
+    font-family: var(--medical-font-family);
+    font-size: var(--medical-font-size-base);
+    vertical-align: top;
+    color: var(--medical-text);
+}
+
+/* Zebra Striping */
+tbody tr:nth-child(even) {
+    background-color: var(--medical-highlight);
+}
+
+tbody tr:hover {
+    background-color: rgba(21, 101, 192, 0.08);
+    transition: background-color 0.2s ease;
+}
+
+/* Table Caption */
+caption {
+    font-family: var(--medical-font-family);
+    font-size: var(--medical-font-size-lg);
+    font-weight: 600;
+    color: var(--medical-primary);
+    padding: var(--medical-spacing-md);
+    text-align: left;
+    caption-side: top;
+}
+
+/* Form Elements */
+input, select, textarea {
+    font-family: var(--medical-font-family);
+    font-size: var(--medical-font-size-base);
+    padding: var(--medical-spacing-sm);
+    border: var(--medical-border-width) solid var(--medical-border);
+    border-radius: var(--medical-border-radius);
+    background-color: var(--medical-surface);
+    color: var(--medical-text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--medical-primary);
+    box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
+}
+
+/* Links */
+a {
+    color: var(--medical-primary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #1976d2;
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: 2px solid var(--medical-primary);
+    outline-offset: 2px;
+}
+
+/* Lists */
+ul, ol {
+    margin: var(--medical-spacing-sm) 0;
+    padding-left: var(--medical-spacing-lg);
+}
+
+ul {
+    list-style-type: disc;
+}
+
+li {
+    margin: var(--medical-spacing-xs) 0;
+}
+
+/* Definition Lists */
+dfn {
+    position: relative;
+    left: var(--medical-spacing-md);
+    font-style: normal;
+    font-weight: 500;
+    color: var(--medical-text-secondary);
+}
+
+/* Medical Record Specific Classes */
+.Schedule {
+    text-align: center;
+    font-weight: 600;
+    color: var(--medical-primary);
+}
+
+.NewOrderTop {
+    border-top: 3px solid var(--medical-primary);
+    border-left: var(--medical-border-width) solid var(--medical-border);
+    border-right: var(--medical-border-width) solid var(--medical-border);
+    border-bottom: var(--medical-border-width) solid var(--medical-border);
+    background-color: var(--medical-highlight);
+    font-weight: 600;
+    padding: var(--medical-spacing-sm);
+}
+
+.TopAdminCell, .BotAdminCell {
+    border: var(--medical-border-width) solid var(--medical-border);
+    padding: var(--medical-spacing-sm);
+    background-color: var(--medical-surface);
+}
+
+.BotAdminCell {
+    border-bottom: 2px solid var(--medical-primary);
+}
+
+.Footer {
+    padding-left: var(--medical-spacing-lg);
+    font-style: italic;
+    color: var(--medical-text-secondary);
+    font-size: var(--medical-font-size-sm);
+}
+
+.SignLine {
+    border: var(--medical-border-width) solid var(--medical-text);
+    height: 2rem;
+    background-color: var(--medical-surface);
+    border-radius: var(--medical-border-radius);
+    position: relative;
+}
+
+.SignLine::before {
+    content: "Signature";
+    position: absolute;
+    top: -1.2rem;
+    left: 0;
+    font-size: var(--medical-font-size-sm);
+    color: var(--medical-text-secondary);
+}
+
+/* Status Indicators */
+.status-active {
+    color: var(--medical-success);
+    font-weight: 600;
+}
+
+.status-warning {
+    color: var(--medical-warning);
+    font-weight: 600;
+}
+
+.status-inactive {
+    color: var(--medical-text-secondary);
+    font-style: italic;
+}
+
+/* Medication-specific styling */
+.medication-time {
+    font-weight: 600;
+    color: var(--medical-primary);
+    text-align: center;
+}
+
+.medication-dose {
+    font-weight: 500;
+    color: var(--medical-text);
+}
+
+.medication-notes {
+    font-size: var(--medical-font-size-sm);
+    color: var(--medical-text-secondary);
+    font-style: italic;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background-color: white;
+        color: black;
+        font-size: 12pt;
+    }
+    
+    table {
+        box-shadow: none;
+        border: 1px solid black;
+    }
+    
+    th {
+        background: #f0f0f0 !important;
+        color: black !important;
+    }
+    
+    tbody tr:nth-child(even) {
+        background-color: #f8f8f8 !important;
+    }
+    
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: var(--medical-spacing-sm);
+    }
+    
+    table {
+        font-size: var(--medical-font-size-sm);
+    }
+    
+    th, td {
+        padding: var(--medical-spacing-sm);
+    }
+    
+    /* Stack table columns on mobile if needed */
+    .mobile-stack {
+        display: block;
+        width: 100%;
+    }
+    
+    .mobile-stack thead,
+    .mobile-stack tbody,
+    .mobile-stack th,
+    .mobile-stack td,
+    .mobile-stack tr {
+        display: block;
+    }
+    
+    .mobile-stack thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    .mobile-stack tr {
+        border: 1px solid var(--medical-border);
+        margin-bottom: var(--medical-spacing-md);
+        border-radius: var(--medical-border-radius);
+        background-color: var(--medical-surface);
+    }
+    
+    .mobile-stack td {
+        border: none;
+        border-bottom: 1px solid var(--medical-border);
+        position: relative;
+        padding-left: 50%;
+    }
+    
+    .mobile-stack td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: var(--medical-spacing-sm);
+        width: 45%;
+        padding-right: var(--medical-spacing-sm);
+        white-space: nowrap;
+        font-weight: 600;
+        color: var(--medical-primary);
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-contrast: high) {
+    :root {
+        --medical-border: #000000;
+        --medical-text: #000000;
+        --medical-background: #ffffff;
+    }
+}
+
+/* Focus indicators for better accessibility */
+table:focus-within {
+    outline: 2px solid var(--medical-primary);
+    outline-offset: 2px;
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--medical-border);
+    border-top: 2px solid var(--medical-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

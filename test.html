@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DR Interface Debug Test</title>
+</head>
+<body>
+    <h1>DR Interface Debug Test</h1>
+    
+    <button onclick="testCSVLoad()">Test CSV Loading</button>
+    <button onclick="testJavaScript()">Test JavaScript</button>
+    
+    <div id="results" style="margin-top: 20px; padding: 10px; background: #f0f0f0;">
+        <h3>Test Results:</h3>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function testJavaScript() {
+            const output = document.getElementById('output');
+            output.innerHTML += '<p>✅ JavaScript is working!</p>';
+            
+            // Test if we can access the main functions
+            if (typeof PopRecordBox !== 'undefined') {
+                output.innerHTML += '<p>✅ PopRecordBox function exists</p>';
+            } else {
+                output.innerHTML += '<p>❌ PopRecordBox function NOT found</p>';
+            }
+            
+            if (typeof drInterface !== 'undefined' && drInterface) {
+                output.innerHTML += '<p>✅ drInterface object exists</p>';
+            } else {
+                output.innerHTML += '<p>❌ drInterface object NOT found</p>';
+            }
+        }
+        
+        async function testCSVLoad() {
+            const output = document.getElementById('output');
+            
+            try {
+                const response = await fetch('./Data/Data_Entries.CSV');
+                if (response.ok) {
+                    const text = await response.text();
+                    output.innerHTML += '<p>✅ CSV file loaded successfully</p>';
+                    output.innerHTML += '<p>CSV content length: ' + text.length + ' characters</p>';
+                    output.innerHTML += '<p>First 200 characters: <code>' + text.substring(0, 200) + '...</code></p>';
+                } else {
+                    output.innerHTML += '<p>❌ CSV file failed to load: ' + response.status + '</p>';
+                }
+            } catch (error) {
+                output.innerHTML += '<p>❌ CSV loading error: ' + error.message + '</p>';
+            }
+        }
+        
+        // Try to load the main script
+        const script = document.createElement('script');
+        script.src = 'data/Main.js';
+        script.onload = function() {
+            document.getElementById('output').innerHTML += '<p>✅ Main.js loaded successfully</p>';
+        };
+        script.onerror = function() {
+            document.getElementById('output').innerHTML += '<p>❌ Failed to load Main.js</p>';
+        };
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>

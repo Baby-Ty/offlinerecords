@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Embedded Configuration</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .record-group { margin: 15px 0; padding: 10px; background: #f8f9fa; border-radius: 5px; }
+        .record-item { margin: 5px 0; padding: 5px; background: white; border-radius: 3px; font-size: 14px; }
+        button { padding: 10px 20px; margin: 10px 5px; border: none; border-radius: 5px; cursor: pointer; }
+        .test-btn { background: #007bff; color: white; }
+        .test-btn:hover { background: #0056b3; }
+    </style>
+    <script src="./Data/Main.js"></script>
+</head>
+<body>
+    <h1>DR Interface Embedded Configuration Test</h1>
+    <div id="test-results"></div>
+    
+    <button class="test-btn" onclick="testEmbeddedConfig()">Test Embedded Configuration</button>
+    <button class="test-btn" onclick="testDRInterface()">Test DR Interface Initialization</button>
+    <button class="test-btn" onclick="simulateRecordSelection()">Simulate Record Selection</button>
+    
+    <script>
+        function addResult(message, type = 'info') {
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML += `<div class="test-result ${type}">${message}</div>`;
+        }
+
+        function testEmbeddedConfig() {
+            addResult('🧪 Testing embedded configuration...', 'info');
+            
+            try {
+                // Create a new DR Interface instance
+                const testInterface = new DRInterface();
+                
+                // Test the embedded config method
+                const config = testInterface.getEmbeddedConfig();
+                
+                if (!config || !config.records) {
+                    throw new Error('Configuration object is missing or invalid');
+                }
+                
+                addResult('✅ Embedded configuration loaded successfully', 'success');
+                
+                // Test each record type
+                const expectedTypes = ['MARS', 'TARS', 'FaceSheets', 'Orders'];
+                let totalRecords = 0;
+                
+                for (const type of expectedTypes) {
+                    if (!config.records[type] || !Array.isArray(config.records[type])) {
+                        throw new Error(`Record type ${type} is missing or invalid`);
+                    }
+                    
+                    const count = config.records[type].length;
+                    totalRecords += count;
+                    addResult(`✅ ${type}: ${count} records found`, 'success');
+                    
+                    // Show record details
+                    let recordDetails = '<div class="record-group"><strong>' + type + ' Records:</strong>';
+                    config.records[type].forEach(record => {
+                        recordDetails += `<div class="record-item">📋 ${record.name} → ${record.path}</div>`;
+                    });
+                    recordDetails += '</div>';
+                    addResult(recordDetails, 'info');
+                }
+                
+                addResult(`🎉 Configuration test passed! Total records: ${totalRecords}`, 'success');
+                
+            } catch (error) {
+                addResult(`❌ Configuration test failed: ${error.message}`, 'error');
+                console.error('Configuration test error:', error);
+            }
+        }
+        
+        function testDRInterface() {
+            addResult('🧪 Testing DR Interface initialization...', 'info');
+            
+            try {
+                // Check if window.drInterface exists
+                if (window.drInterface) {
+                    addResult('✅ Window.drInterface is already initialized', 'success');
+                    
+                    // Test record data loading
+                    if (window.drInterface.recordData && 
+                        window.drInterface.recordData.groups && 
+                        window.drInterface.recordData.groups.length > 0) {
+                        addResult(`✅ Record data loaded: ${window.drInterface.recordData.groups.length} groups`, 'success');
+                        
+                        // Show loaded groups
+                        window.drInterface.recordData.groups.forEach((group, index) => {
+                            const recordCount = window.drInterface.recordData.names[index].length;
+                            addResult(`📁 ${group}: ${recordCount} records`, 'info');
+                        });
+                    } else {
+                        addResult('⚠️ DR Interface initialized but no record data loaded yet', 'info');
+                    }
+                } else {
+                    addResult('⚠️ Window.drInterface not found, attempting initialization...', 'info');
+                    ASNData(); // Try to initialize
+                    
+                    setTimeout(() => {
+                        if (window.drInterface) {
+                            addResult('✅ DR Interface initialized successfully', 'success');
+                        } else {
+                            addResult('❌ Failed to initialize DR Interface', 'error');
+                        }
+                    }, 1000);
+                }
+                
+            } catch (error) {
+                addResult(`❌ DR Interface test failed: ${error.message}`, 'error');
+                console.error('DR Interface test error:', error);
+            }
+        }
+        
+        function simulateRecordSelection() {
+            addResult('🧪 Simulating record selection...', 'info');
+            
+            try {
+                if (!window.drInterface) {
+                    throw new Error('DR Interface not initialized');
+                }
+                
+                // Test the populateRecordBox function for MARS
+                addResult('Testing MARS record selection...', 'info');
+                
+                // This should work without hanging now
+                setTimeout(() => {
+                    try {
+                        PopRecordBox('MARS');
+                        addResult('✅ PopRecordBox function executed without errors', 'success');
+                        addResult('🎯 Check if the record selection modal appeared on the main interface', 'info');
+                    } catch (error) {
+                        addResult(`❌ PopRecordBox failed: ${error.message}`, 'error');
+                    }
+                }, 500);
+                
+            } catch (error) {
+                addResult(`❌ Record selection test failed: ${error.message}`, 'error');
+                console.error('Record selection test error:', error);
+            }
+        }
+        
+        // Auto-run basic tests when page loads
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                addResult('🚀 Starting automatic tests...', 'info');
+                testEmbeddedConfig();
+                setTimeout(() => testDRInterface(), 1000);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
