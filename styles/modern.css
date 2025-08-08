@@ -7,7 +7,7 @@
   --primary-light: #3b82f6;
   --primary-dark: #1d4ed8;
   --secondary: #64748b;
-  --accent: #10b981;
+  --accent: var(--primary-light);
   --warning: #f59e0b;
   --error: #ef4444;
   --success: #22c55e;

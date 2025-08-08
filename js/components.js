@@ -30,6 +30,107 @@ class ResidentProfileCard {
     }
 }
 
+class ResidentTable {
+    static create(residents) {
+        const container = document.createElement('div');
+        container.className = 'resident-table-container';
+
+        const table = document.createElement('table');
+        table.className = 'resident-table';
+
+        // Header
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        [
+            'Name',
+            'ID',
+            'Facility',
+            'FACE',
+            'MEDS',
+            'TREAT',
+            'ORDERS'
+        ].forEach(label => {
+            const th = document.createElement('th');
+            th.textContent = label;
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+
+        // Body
+        const tbody = document.createElement('tbody');
+        residents.forEach(resident => {
+            const tr = document.createElement('tr');
+
+            // Name
+            const nameTd = document.createElement('td');
+            nameTd.setAttribute('data-label', 'Name');
+            const nameLink = document.createElement('a');
+            nameLink.href = '#';
+            nameLink.className = 'resident-name-link';
+            nameLink.textContent = resident.Name || 'Unknown Name';
+            nameLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (window.showResidentDetail) {
+                    window.showResidentDetail(resident.ResidentID);
+                }
+            });
+            nameTd.appendChild(nameLink);
+            tr.appendChild(nameTd);
+
+            // ID
+            const idTd = document.createElement('td');
+            idTd.setAttribute('data-label', 'ID');
+            idTd.textContent = resident.ResidentID ?? '';
+            tr.appendChild(idTd);
+
+            // Facility
+            const facTd = document.createElement('td');
+            facTd.setAttribute('data-label', 'Facility');
+            facTd.textContent = resident.facility || 'Unknown';
+            tr.appendChild(facTd);
+
+            // Helper to create pill
+            const createPill = (active) => {
+                const span = document.createElement('span');
+                span.className = `pill ${active ? 'pill-active' : 'pill-inactive'}`;
+                span.textContent = active ? 'Yes' : 'No';
+                return span;
+            };
+
+            // FACE
+            const faceTd = document.createElement('td');
+            faceTd.setAttribute('data-label', 'FACE');
+            faceTd.appendChild(createPill(Boolean(resident.hasData?.facesheet)));
+            tr.appendChild(faceTd);
+
+            // MEDS
+            const medsTd = document.createElement('td');
+            medsTd.setAttribute('data-label', 'MEDS');
+            medsTd.appendChild(createPill(Boolean(resident.hasData?.medications)));
+            tr.appendChild(medsTd);
+
+            // TREAT
+            const treatTd = document.createElement('td');
+            treatTd.setAttribute('data-label', 'TREAT');
+            treatTd.appendChild(createPill(Boolean(resident.hasData?.treatments)));
+            tr.appendChild(treatTd);
+
+            // ORDERS
+            const ordersTd = document.createElement('td');
+            ordersTd.setAttribute('data-label', 'ORDERS');
+            ordersTd.appendChild(createPill(Boolean(resident.hasData?.orders)));
+            tr.appendChild(ordersTd);
+
+            tbody.appendChild(tr);
+        });
+
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        container.appendChild(table);
+        return container;
+    }
+}
+
 class MedicationTable {
     static create(medications) {
         if (!medications || medications.length === 0) {

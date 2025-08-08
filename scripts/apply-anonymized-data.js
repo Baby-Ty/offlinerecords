@@ -71,7 +71,7 @@ function addAnonymizedBanner() {
         top: 0;
         left: 0;
         right: 0;
-        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
         color: white;
         padding: 8px 16px;
         text-align: center;

@@ -7,11 +7,72 @@
     <link rel="stylesheet" href="styles/medical-api-interface.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             background-color: #f5f5f5;
         }
+
+        /* Unified slim top status bar */
+        .top-status {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 12px;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .top-status .status-left,
+        .top-status .status-center,
+        .top-status .status-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-status .status-center {
+            justify-content: center;
+            font-size: 12px;
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981; /* online default */
+        }
+
+        .status-dot.offline { background: #ef4444; }
+
+        .status-text { font-size: 12px; color: #374151; }
+
+        .status-actions { justify-content: flex-end; }
+
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #1f2937;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color .15s ease, border-color .15s ease;
+        }
+
+        .icon-btn:hover { background: #f9fafb; border-color: #d1d5db; }
+        .icon-btn:disabled { opacity: .6; cursor: not-allowed; }
         
         .container {
             max-width: 1200px;
@@ -20,56 +81,26 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             overflow: hidden;
+            padding-bottom: 20px;
         }
         
         .header {
             background: linear-gradient(135deg, #2c3e50, #3498db);
             color: white;
-            padding: 20px;
+            padding: 14px; /* reduced for more rows on screen */
             text-align: center;
         }
         
         .header h1 {
             margin: 0;
-            font-size: 2em;
+            font-size: 1.6em;
+            font-weight: 600;
         }
         
-        .status-bar {
-            background: #ecf0f1;
-            padding: 15px;
-            border-bottom: 1px solid #bdc3c7;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            color: #2c3e50;
-        }
-        
-        .status-controls {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .status-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #27ae60;
-        }
-        
-        .status-dot.offline {
-            background: #e74c3c;
-        }
-        
+        /* legacy status-bar styles no longer used */
+
         .controls {
-            padding: 20px;
+            padding: 12px; /* reduced for compact header area */
             border-bottom: 1px solid #ecf0f1;
         }
         
@@ -92,17 +123,7 @@
             font-size: 14px;
         }
         
-        button {
-            background: #3498db;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        button:hover {
-            background: #2980b9;
-        }
+        button { cursor: pointer; }
         
         button:disabled {
             background: #bdc3c7;
@@ -114,11 +135,81 @@
             min-height: 400px;
         }
         
-        .resident-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+        /* Residents table layout */
+        .resident-table-container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-top: 16px;
+        }
+
+        .resident-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            font-family: 'Inter', 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .resident-table thead th {
+            background: #f3f4f6;
+            color: #111827;
+            font-weight: 700;
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .resident-table tbody td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            color: #374151;
+            vertical-align: middle;
+        }
+
+        .resident-table tbody tr:nth-child(odd) { background: #ffffff; }
+        .resident-table tbody tr:nth-child(even) { background: #f9fafb; }
+        .resident-table tbody tr:hover { background: #eef2ff; }
+
+        .resident-name-link {
+            color: #1f2937;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .resident-name-link:hover { text-decoration: underline; }
+
+        /* Pill badges for record availability */
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 22px;
+            min-width: 32px;
+            padding: 0 8px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+        }
+        .pill-active {
+            background: #e7f3eb; /* muted green */
+            color: #1f6b45;
+            border-color: #d5e7da;
+        }
+        .pill-inactive {
+            background: #f3f4f6; /* muted gray */
+            color: #6b7280;
+            border-color: #e5e7eb;
+        }
+
+        /* Responsive stacked table for small screens */
+        @media (max-width: 768px) {
+            .resident-table thead { display: none; }
+            .resident-table, .resident-table tbody, .resident-table tr, .resident-table td { display: block; width: 100%; }
+            .resident-table tr { background: #ffffff !important; margin-bottom: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.06); border-radius: 8px; overflow: hidden; }
+            .resident-table td { border-bottom: 1px solid #e5e7eb; display: grid; grid-template-columns: 120px 1fr; gap: 8px; }
+            .resident-table td:last-child { border-bottom: none; }
+            .resident-table td::before { content: attr(data-label); font-weight: 700; color: #374151; }
         }
         
         .resident-card {
@@ -291,7 +382,7 @@
         }
         
         .count-card {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
             color: white;
             padding: 15px;
             border-radius: 6px;
@@ -421,9 +512,20 @@
     </style>
 </head>
 <body>
-    <!-- Anonymized Data Notice -->
-    <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 12px 0; text-align: center; font-size: 14px; font-weight: 500; margin-bottom: 20px; border-radius: 8px;">
-        🔒 <strong>DEMO MODE</strong> - All patient data shown is fictional and anonymized for demonstration purposes
+    <!-- Unified Slim Status Bar -->
+    <div class="top-status">
+        <div class="status-left">
+            <span class="status-dot" id="statusDot"></span>
+            <span class="status-text" id="statusText">Connecting...</span>
+        </div>
+        <div class="status-center">
+            <span>🔒 Demo Mode • Anonymized data</span>
+        </div>
+        <div class="status-right status-actions">
+            <button class="icon-btn" id="refreshBtn" onclick="loadResidents()">🔄 <span>Refresh</span></button>
+            <button class="icon-btn" id="offlineBtn" onclick="toggleOfflineMode()">📴 <span>Offline</span></button>
+            <button class="icon-btn" id="viewToggleBtn" onclick="toggleViewMode()">🗂 <span>Cards</span></button>
+        </div>
     </div>
 
     <div class="container">
@@ -432,17 +534,8 @@
             <p>Offline Access</p>
         </div>
         
-        <div class="status-bar">
-            <div class="status-indicator">
-                <div class="status-dot" id="statusDot"></div>
-                <span id="statusText">Connecting...</span>
-            </div>
-            <div class="status-controls">
-                <button id="refreshBtn" onclick="loadResidents()">🔄 Refresh Data</button>
-                <button id="offlineBtn" onclick="toggleOfflineMode()">📴 Offline Mode</button>
-            </div>
-            <div id="lastUpdate">Last Update: Never</div>
-        </div>
+        <!-- legacy status bar removed; last update now sits under header -->
+        <div id="lastUpdate" style="padding: 8px 20px; font-size: 12px; color: #6b7280;">Last Update: Never</div>
         
         <div class="controls">
             <div class="facility-selection-cards">
