@@ -58,7 +58,7 @@ This document outlines the comprehensive enhancements made to the medical record
 ### Color Scheme
 - **Primary**: #2563eb (Medical Blue)
 - **Secondary**: #64748b (Professional Gray)
-- **Accent**: #059669 (Success Green)
+- **Accent**: #3b82f6 (Blue Accent)
 - **Background**: #f8fafc (Light Gray)
 - **Text**: #1e293b (Dark Slate)
 

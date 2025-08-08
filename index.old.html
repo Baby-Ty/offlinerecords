@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Medical Records Emergency Access - Clean, fast interface for accessing patient records during network outages">
+    <title>Emergency Medical Records Access</title>
+    <link rel="icon" href="data/favicon.ico.png" type="image/png">
+    <link rel="stylesheet" href="styles/modern.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1 class="title">Emergency Records</h1>
+                    <p class="subtitle">Offline Medical Records Access</p>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-dot offline"></div>
+                    <span class="status-text">Offline Mode</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Record Types - Show first -->
+            <section class="record-types">
+                <h2 class="section-title">Select Record Type</h2>
+                <div class="record-grid">
+                    <div class="record-card" data-type="Facesheet">
+                        <div class="record-icon">👤</div>
+                        <div class="record-info">
+                            <h3>Face Sheets</h3>
+                            <p>Patient demographics and basic information</p>
+                        </div>
+                        <div class="record-count" id="facesheetCount">Available across all facilities</div>
+                    </div>
+                    
+                    <div class="record-card" data-type="MED">
+                        <div class="record-icon">💊</div>
+                        <div class="record-info">
+                            <h3>MED (MARS)</h3>
+                            <p>Medication Administration Records</p>
+                        </div>
+                        <div class="record-count" id="medCount">Available across all facilities</div>
+                    </div>
+                    
+                    <div class="record-card" data-type="TRE">
+                        <div class="record-icon">🩺</div>
+                        <div class="record-info">
+                            <h3>TRE (TARS)</h3>
+                            <p>Treatment Administration Records</p>
+                        </div>
+                        <div class="record-count" id="treCount">Available across all facilities</div>
+                    </div>
+                    
+                    <div class="record-card" data-type="OTH">
+                        <div class="record-icon">📋</div>
+                        <div class="record-info">
+                            <h3>OTH (Orders)</h3>
+                            <p>Medical Orders and Prescriptions</p>
+                        </div>
+                        <div class="record-count" id="othCount">Available across all facilities</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Facility Selection - Hidden by default -->
+            <section class="facility-selection" id="facilitySelection" style="display: none;">
+                <h2 class="section-title">Select Facility & Role</h2>
+                <div class="facility-grid" id="facilityGrid">
+                    <div class="facility-card" data-facility="RUSSLL_RC">
+                        <div class="facility-icon">🏥</div>
+                        <div class="facility-info">
+                            <h3>Russell Park RC</h3>
+                            <p>Residential Care</p>
+                        </div>
+                        <div class="facility-badge">RC</div>
+                        <div class="facility-count" id="rcCount">0 records</div>
+                    </div>
+                    
+                    <div class="facility-card" data-facility="RUSSLL_DAY">
+                        <div class="facility-icon">☀️</div>
+                        <div class="facility-info">
+                            <h3>Russell Park Day</h3>
+                            <p>Day Programs</p>
+                        </div>
+                        <div class="facility-badge">DAY</div>
+                        <div class="facility-count" id="dayCount">0 records</div>
+                    </div>
+                    
+                    <div class="facility-card" data-facility="RUSSLL_LTC">
+                        <div class="facility-icon">🛏️</div>
+                        <div class="facility-info">
+                            <h3>Russell Park LTC</h3>
+                            <p>Long Term Care</p>
+                        </div>
+                        <div class="facility-badge">LTC</div>
+                        <div class="facility-count" id="ltcCount">0 records</div>
+                    </div>
+                    
+                    <div class="facility-card" data-facility="RUSSLL_OP">
+                        <div class="facility-icon">🚶</div>
+                        <div class="facility-info">
+                            <h3>Russell Park OP</h3>
+                            <p>Outpatient Services</p>
+                        </div>
+                        <div class="facility-badge">OP</div>
+                        <div class="facility-count" id="opCount">0 records</div>
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Loading Records...</h3>
+            <p id="loadingText">Please wait while we prepare your data</p>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div class="modal-overlay" id="helpModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Emergency Records Help</h2>
+                <button class="modal-close" id="closeHelp" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-content">
+                <h3>Quick Start</h3>
+                <ol>
+                    <li>Choose the type of record you need to access</li>
+                    <li>Select your facility and role from the cards</li>
+                    <li>Records will open automatically for viewing or printing</li>
+                </ol>
+                
+                <h3>Record Types</h3>
+                <ul>
+                    <li><strong>Face Sheets:</strong> Patient demographics, contact info, diagnoses</li>
+                    <li><strong>MED (MARS):</strong> Medication administration records</li>
+                    <li><strong>TRE (TARS):</strong> Treatment administration records</li>
+                    <li><strong>OTH (Orders):</strong> Medical orders and prescriptions</li>
+                </ul>
+
+                <h3>Keyboard Shortcuts</h3>
+                <ul>
+                    <li><kbd>Esc</kbd> - Close dialogs or go back</li>
+                    <li><kbd>Enter</kbd> - Select highlighted item</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>Emergency Medical Records Access System</p>
+                    <p class="timestamp">Last updated: <span id="lastUpdated">--</span></p>
+                </div>
+                <div class="footer-actions">
+                    <button class="btn-help" id="helpBtn" aria-label="Help">❓ Help</button>
+                    <button class="btn-print" id="printBtn" aria-label="Print" style="display: none;">🖨️ Print</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/modern.js"></script>
+</body>
+</html>
