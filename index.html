@@ -3,180 +3,576 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Medical Records Emergency Access - Clean, fast interface for accessing patient records during network outages">
-    <title>Emergency Medical Records Access</title>
-    <link rel="icon" href="data/favicon.ico.png" type="image/png">
-    <link rel="stylesheet" href="styles/modern.css">
+    <title>DR Medical Records - API Interface</title>
+    <link rel="stylesheet" href="styles/medical-api-interface.css">
+    <style>
+        body {
+            font-family: 'Inter', 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        /* Unified slim top status bar */
+        .top-status {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 12px;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .top-status .status-left,
+        .top-status .status-center,
+        .top-status .status-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-status .status-center {
+            justify-content: center;
+            font-size: 12px;
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981; /* online default */
+        }
+
+        .status-dot.offline { background: #ef4444; }
+
+        .status-text { font-size: 12px; color: #374151; }
+
+        .status-actions { justify-content: flex-end; }
+
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #1f2937;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color .15s ease, border-color .15s ease;
+        }
+
+        .icon-btn:hover { background: #f9fafb; border-color: #d1d5db; }
+        .icon-btn:disabled { opacity: .6; cursor: not-allowed; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            padding-bottom: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 14px; /* reduced for more rows on screen */
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 1.6em;
+            font-weight: 600;
+        }
+        
+        /* legacy status-bar styles no longer used */
+
+        .controls {
+            padding: 12px; /* reduced for compact header area */
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .control-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .control-group label {
+            font-weight: bold;
+            min-width: 120px;
+        }
+        
+        select, button {
+            padding: 8px 12px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        button { cursor: pointer; }
+        
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .main-content {
+            padding: 20px;
+            min-height: 400px;
+        }
+        
+        /* Residents table layout */
+        .resident-table-container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-top: 16px;
+        }
+
+        .resident-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            font-family: 'Inter', 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .resident-table thead th {
+            background: #f3f4f6;
+            color: #111827;
+            font-weight: 700;
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .resident-table tbody td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            color: #374151;
+            vertical-align: middle;
+        }
+
+        .resident-table tbody tr:nth-child(odd) { background: #ffffff; }
+        .resident-table tbody tr:nth-child(even) { background: #f9fafb; }
+        .resident-table tbody tr:hover { background: #eef2ff; }
+
+        .resident-name-link {
+            color: #1f2937;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .resident-name-link:hover { text-decoration: underline; }
+
+        /* Pill badges for record availability */
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 22px;
+            min-width: 32px;
+            padding: 0 8px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid transparent;
+        }
+        .pill-active {
+            background: #e7f3eb; /* muted green */
+            color: #1f6b45;
+            border-color: #d5e7da;
+        }
+        .pill-inactive {
+            background: #f3f4f6; /* muted gray */
+            color: #6b7280;
+            border-color: #e5e7eb;
+        }
+
+        /* Responsive stacked table for small screens */
+        @media (max-width: 768px) {
+            .resident-table thead { display: none; }
+            .resident-table, .resident-table tbody, .resident-table tr, .resident-table td { display: block; width: 100%; }
+            .resident-table tr { background: #ffffff !important; margin-bottom: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.06); border-radius: 8px; overflow: hidden; }
+            .resident-table td { border-bottom: 1px solid #e5e7eb; display: grid; grid-template-columns: 120px 1fr; gap: 8px; }
+            .resident-table td:last-child { border-bottom: none; }
+            .resident-table td::before { content: attr(data-label); font-weight: 700; color: #374151; }
+        }
+        
+        .resident-card {
+            border: 1px solid #ecf0f1;
+            border-radius: 6px;
+            padding: 15px;
+            background: #fafafa;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .resident-card:hover {
+            background: #f0f8ff;
+            border-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+        }
+        
+        .resident-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .resident-info {
+            color: #34495e;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .data-badges {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .badge.has-data {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge.no-data {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        
+        .record-detail {
+            background: white;
+            border-radius: 6px;
+            margin: 10px 0;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .record-header {
+            background: #34495e;
+            color: white;
+            padding: 12px 15px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .record-content {
+            padding: 15px;
+            display: none;
+            border-top: 1px solid #ecf0f1;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        
+        .record-content.active {
+            display: block;
+        }
+
+        /* Improve readability within record content */
+        .record-content p,
+        .record-content div,
+        .record-content span,
+        .record-content li {
+            color: #2c3e50;
+        }
+
+        .record-content .timestamp,
+        .record-content .date,
+        .record-content .time {
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        .record-content .label,
+        .record-content .field-label {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .record-content .value,
+        .record-content .field-value {
+            color: #34495e;
+        }
+
+        .record-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        .record-content table th,
+        .record-content table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .record-content table th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .expand-icon {
+            transition: transform 0.3s;
+        }
+        
+        .expand-icon.expanded {
+            transform: rotate(180deg);
+        }
+        
+        .back-button {
+            background: #95a5a6;
+            margin-bottom: 20px;
+        }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        .counts-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .count-card {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .count-number {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .count-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        /* Facility Selection Cards */
+        .facility-selection-cards {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        .facility-selection-cards h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        
+        .facility-cards-grid {
+            display: flex;
+            gap: 15px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+        
+        .facility-card-btn {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .facility-card-btn:hover {
+            border-color: #3498db;
+            background: #f8fbff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+        }
+        
+        .facility-card-btn.selected {
+            border-color: #3498db;
+            background: #e3f2fd;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        .facility-card-btn .facility-icon {
+            font-size: 2em;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .facility-card-btn .facility-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 4px;
+            font-size: 1.1em;
+        }
+        
+        .facility-card-btn .facility-description {
+            color: #2c3e50;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+        
+        .facility-card-btn .facility-badge {
+            background: #3498db;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .control-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .control-group label {
+                min-width: auto;
+            }
+            
+            .resident-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .status-bar {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+            
+            .status-controls {
+                justify-content: center;
+            }
+            
+            .facility-cards-grid {
+                flex-direction: row;
+                overflow-x: auto;
+            }
+            
+            .facility-card-btn {
+                min-width: 150px;
+                flex-shrink: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo-section">
-                    <h1 class="title">Emergency Records</h1>
-                    <p class="subtitle">Offline Medical Records Access</p>
-                </div>
-                <div class="status-indicator">
-                    <div class="status-dot offline"></div>
-                    <span class="status-text">Offline Mode</span>
-                </div>
-            </div>
+    <!-- Unified Slim Status Bar -->
+    <div class="top-status">
+        <div class="status-left">
+            <span class="status-dot" id="statusDot"></span>
+            <span class="status-text" id="statusText">Connecting...</span>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main">
-        <div class="container">
-            <!-- Record Types - Show first -->
-            <section class="record-types">
-                <h2 class="section-title">Select Record Type</h2>
-                <div class="record-grid">
-                    <div class="record-card" data-type="Facesheet">
-                        <div class="record-icon">👤</div>
-                        <div class="record-info">
-                            <h3>Face Sheets</h3>
-                            <p>Patient demographics and basic information</p>
-                        </div>
-                        <div class="record-count" id="facesheetCount">Available across all facilities</div>
-                    </div>
-                    
-                    <div class="record-card" data-type="MED">
-                        <div class="record-icon">💊</div>
-                        <div class="record-info">
-                            <h3>MED (MARS)</h3>
-                            <p>Medication Administration Records</p>
-                        </div>
-                        <div class="record-count" id="medCount">Available across all facilities</div>
-                    </div>
-                    
-                    <div class="record-card" data-type="TRE">
-                        <div class="record-icon">🩺</div>
-                        <div class="record-info">
-                            <h3>TRE (TARS)</h3>
-                            <p>Treatment Administration Records</p>
-                        </div>
-                        <div class="record-count" id="treCount">Available across all facilities</div>
-                    </div>
-                    
-                    <div class="record-card" data-type="OTH">
-                        <div class="record-icon">📋</div>
-                        <div class="record-info">
-                            <h3>OTH (Orders)</h3>
-                            <p>Medical Orders and Prescriptions</p>
-                        </div>
-                        <div class="record-count" id="othCount">Available across all facilities</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Facility Selection - Hidden by default -->
-            <section class="facility-selection" id="facilitySelection" style="display: none;">
-                <h2 class="section-title">Select Facility & Role</h2>
-                <div class="facility-grid" id="facilityGrid">
-                    <div class="facility-card" data-facility="RUSSLL_RC">
-                        <div class="facility-icon">🏥</div>
-                        <div class="facility-info">
-                            <h3>Russell Park RC</h3>
-                            <p>Residential Care</p>
-                        </div>
-                        <div class="facility-badge">RC</div>
-                        <div class="facility-count" id="rcCount">0 records</div>
-                    </div>
-                    
-                    <div class="facility-card" data-facility="RUSSLL_DAY">
-                        <div class="facility-icon">☀️</div>
-                        <div class="facility-info">
-                            <h3>Russell Park Day</h3>
-                            <p>Day Programs</p>
-                        </div>
-                        <div class="facility-badge">DAY</div>
-                        <div class="facility-count" id="dayCount">0 records</div>
-                    </div>
-                    
-                    <div class="facility-card" data-facility="RUSSLL_LTC">
-                        <div class="facility-icon">🛏️</div>
-                        <div class="facility-info">
-                            <h3>Russell Park LTC</h3>
-                            <p>Long Term Care</p>
-                        </div>
-                        <div class="facility-badge">LTC</div>
-                        <div class="facility-count" id="ltcCount">0 records</div>
-                    </div>
-                    
-                    <div class="facility-card" data-facility="RUSSLL_OP">
-                        <div class="facility-icon">🚶</div>
-                        <div class="facility-info">
-                            <h3>Russell Park OP</h3>
-                            <p>Outpatient Services</p>
-                        </div>
-                        <div class="facility-badge">OP</div>
-                        <div class="facility-count" id="opCount">0 records</div>
-                    </div>
-                </div>
-            </section>
-
-
+        <div class="status-center">
+            <span>🔒 Demo Mode • Anonymized data</span>
         </div>
-    </main>
-
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <h3>Loading Records...</h3>
-            <p id="loadingText">Please wait while we prepare your data</p>
+        <div class="status-right status-actions">
+            <button class="icon-btn" id="refreshBtn" onclick="loadResidents()">🔄 <span>Refresh</span></button>
+            <button class="icon-btn" id="offlineBtn" onclick="toggleOfflineMode()">📴 <span>Offline</span></button>
+            <button class="icon-btn" id="viewToggleBtn" onclick="toggleViewMode()">🗂 <span>Cards</span></button>
         </div>
     </div>
 
-    <!-- Help Modal -->
-    <div class="modal-overlay" id="helpModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h2>Emergency Records Help</h2>
-                <button class="modal-close" id="closeHelp" aria-label="Close">&times;</button>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 Emergency Health Records Viewer</h1>
+            <p>Offline Access</p>
+        </div>
+        
+        <!-- legacy status bar removed; last update now sits under header -->
+        <div id="lastUpdate" style="padding: 8px 20px; font-size: 12px; color: #6b7280;">Last Update: Never</div>
+        
+        <div class="controls">
+            <div class="facility-selection-cards">
+                <h3 style="color: white;">Select Facility:</h3>
+                <div class="facility-cards-grid" id="facilityCardsGrid">
+                    <!-- Facility cards will be populated here -->
+                </div>
             </div>
-            <div class="modal-content">
-                <h3>Quick Start</h3>
-                <ol>
-                    <li>Choose the type of record you need to access</li>
-                    <li>Select your facility and role from the cards</li>
-                    <li>Records will open automatically for viewing or printing</li>
-                </ol>
-                
-                <h3>Record Types</h3>
-                <ul>
-                    <li><strong>Face Sheets:</strong> Patient demographics, contact info, diagnoses</li>
-                    <li><strong>MED (MARS):</strong> Medication administration records</li>
-                    <li><strong>TRE (TARS):</strong> Treatment administration records</li>
-                    <li><strong>OTH (Orders):</strong> Medical orders and prescriptions</li>
-                </ul>
-
-                <h3>Keyboard Shortcuts</h3>
-                <ul>
-                    <li><kbd>Esc</kbd> - Close dialogs or go back</li>
-                    <li><kbd>Enter</kbd> - Select highlighted item</li>
-                </ul>
+        </div>
+        
+        <div class="main-content">
+            <div id="content">
+                <div class="loading">
+                    <p>Loading residents...</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <p>Emergency Medical Records Access System</p>
-                    <p class="timestamp">Last updated: <span id="lastUpdated">--</span></p>
-                </div>
-                <div class="footer-actions">
-                    <button class="btn-help" id="helpBtn" aria-label="Help">❓ Help</button>
-                    <button class="btn-print" id="printBtn" aria-label="Print" style="display: none;">🖨️ Print</button>
-                </div>
+    <!-- Templates -->
+    <template id="residentCardTemplate">
+        <div class="resident-card" onclick="showResidentDetail('{residentId}')">
+            <div class="resident-name">{name}</div>
+            <div class="resident-info">ID: {residentId} | Facility: {facility}</div>
+            <div class="data-badges">
+                <span class="badge {facesheetClass}">Face</span>
+                <span class="badge {medicationsClass}">Meds</span>
+                <span class="badge {treatmentsClass}">Treat</span>
+                <span class="badge {ordersClass}">Orders</span>
             </div>
         </div>
-    </footer>
+    </template>
 
-    <script src="scripts/modern.js"></script>
+    <script src="js/force-anonymized-data.js"></script>
+    <script src="js/fallback-data.js"></script>
+    <script src="js/api-client.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

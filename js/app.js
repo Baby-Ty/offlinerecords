@@ -9,6 +9,7 @@ let facilities = new Set();
 let currentFilter = {
     facility: 'all'
 };
+let viewMode = 'table'; // 'table' | 'cards'
 
 // Initialize application
 document.addEventListener('DOMContentLoaded', async () => {
@@ -54,23 +55,24 @@ async function updateConnectionStatus() {
     
     const isOnline = await apiClient.checkConnection();
     
-    if (isOnline) {
-        statusDot.className = 'status-dot';
-        statusText.textContent = 'Connected to API';
-    } else {
-        statusDot.className = 'status-dot offline';
-        statusText.textContent = 'Offline Mode';
+    if (statusDot) {
+        statusDot.classList.toggle('offline', !isOnline);
+    }
+    if (statusText) {
+        statusText.textContent = isOnline ? 'Connected to API' : 'Offline Mode';
     }
     
     // Update last update timestamp
     try {
         const status = await apiClient.getStatus();
         const lastUpdate = document.getElementById('lastUpdate');
-        if (status.lastProcessed) {
-            const date = new Date(status.lastProcessed);
-            lastUpdate.textContent = `Last Update: ${date.toLocaleString()}`;
-        } else {
-            lastUpdate.textContent = 'Last Update: Never';
+        if (lastUpdate) {
+            if (status.lastProcessed) {
+                const date = new Date(status.lastProcessed);
+                lastUpdate.textContent = `Last Update: ${date.toLocaleString()}`;
+            } else {
+                lastUpdate.textContent = 'Last Update: Never';
+            }
         }
     } catch (error) {
         console.warn('Could not fetch status:', error);
@@ -100,11 +102,8 @@ async function loadResidents() {
         // Update facility cards
         updateFacilityCards();
         
-        // Display residents
+        // Display residents (and summary counts)
         filterAndDisplayResidents();
-        
-        // Show summary counts
-        displaySummaryCounts(data);
         
         console.log(`Loaded ${allResidents.length} residents from ${facilities.size} facilities`);
         
@@ -170,25 +169,25 @@ function getFacilityDisplayInfo(facilityId) {
     const facilityMap = {
         // Protea Valley facility codes
         'PROTEA_LTC': {
-            name: 'Protea Valley Long Term Care',
+            name: 'Long Term Care',
             description: 'Extended Care Services',
             icon: '🏨',
             badge: 'LTC'
         },
         'PROTEA_RC': {
-            name: 'Protea Valley Residential Care',
+            name: 'Residential Care',
             description: 'Rehabilitation Services',
             icon: '🏥',
             badge: 'RC'
         },
         'PROTEA_DAY': {
-            name: 'Protea Valley Day Services',
+            name: 'Day Services',
             description: 'Day Programs & Services',
             icon: '📅',
             badge: 'DAY'
         },
         'PROTEA_OP': {
-            name: 'Protea Valley Outpatient',
+            name: 'Outpatient',
             description: 'Outpatient Services',
             icon: '📋',
             badge: 'OP'
@@ -281,6 +280,8 @@ function filterAndDisplayResidents() {
     });
     
     displayResidents(filteredResidents);
+    // Update summary counts for current filter
+    displaySummaryCounts(filteredResidents);
 }
 
 function displayResidents(residents) {
@@ -296,35 +297,59 @@ function displayResidents(residents) {
         return;
     }
     
-    // Create resident grid
-    const grid = document.createElement('div');
-    grid.className = 'resident-grid';
-    
-    residents.forEach(resident => {
-        const card = ResidentProfileCard.create(resident);
-        if (card) {
-            grid.appendChild(card);
-        }
-    });
-    
     content.innerHTML = '';
-    content.appendChild(grid);
+    if (viewMode === 'table') {
+        const table = ResidentTable.create(residents);
+        content.appendChild(table);
+    } else {
+        const grid = document.createElement('div');
+        grid.className = 'resident-grid';
+        residents.forEach(resident => {
+            const card = ResidentProfileCard.create(resident);
+            if (card) grid.appendChild(card);
+        });
+        content.appendChild(grid);
+    }
 }
 
-function displaySummaryCounts(data) {
+function toggleViewMode() {
+    viewMode = viewMode === 'table' ? 'cards' : 'table';
+    const btn = document.getElementById('viewToggleBtn');
+    if (btn) {
+        if (viewMode === 'table') {
+            btn.innerHTML = '🗂 <span>Cards</span>';
+        } else {
+            btn.innerHTML = '📋 <span>Table</span>';
+        }
+    }
+    filterAndDisplayResidents();
+}
+
+function displaySummaryCounts(residentsForSummary) {
     const content = document.getElementById('content');
-    
-    // Create counts summary
-    const countsContainer = document.createElement('div');
-    countsContainer.className = 'counts-summary';
-    
+    if (!content) return;
+
+    const residents = Array.isArray(residentsForSummary) ? residentsForSummary : allResidents;
+    const facilitiesCount = new Set(residents.map(r => r.facility).filter(Boolean)).size;
+
     const counts = {
-        'Total Residents': data.totalResidents || 0,
-        'Facilities': data.facilitiesProcessed || 0,
-        'With Medications': allResidents.filter(r => r.hasData?.medications).length,
-        'With Orders': allResidents.filter(r => r.hasData?.orders).length
+        'Total Residents': residents.length,
+        'Facilities': facilitiesCount,
+        'With Medications': residents.filter(r => r.hasData?.medications).length,
+        'With Orders': residents.filter(r => r.hasData?.orders).length
     };
-    
+
+    let countsContainer = document.getElementById('countsSummary');
+    if (!countsContainer) {
+        countsContainer = document.createElement('div');
+        countsContainer.id = 'countsSummary';
+        countsContainer.className = 'counts-summary';
+        // If there's existing content (like grid), insert before it
+        content.insertBefore(countsContainer, content.firstChild || null);
+    }
+
+    // Re-render cards
+    countsContainer.innerHTML = '';
     Object.entries(counts).forEach(([label, count]) => {
         const countCard = document.createElement('div');
         countCard.className = 'count-card';
@@ -334,9 +359,11 @@ function displaySummaryCounts(data) {
         `;
         countsContainer.appendChild(countCard);
     });
-    
-    // Insert before resident grid
-    content.insertBefore(countsContainer, content.firstChild);
+
+    // Ensure summary stays at top
+    if (content.firstChild !== countsContainer) {
+        content.insertBefore(countsContainer, content.firstChild);
+    }
 }
 
 async function showResidentDetail(residentId) {
@@ -375,7 +402,7 @@ function displayResidentDetail(resident) {
     detailContainer.innerHTML = `
         <button class="back-button" onclick="loadResidents()">← Back to Residents</button>
         
-        <div class="resident-detail-header" style="margin-bottom: 20px; padding: 20px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 8px;">
+        <div class="resident-detail-header" style="margin-bottom: 20px; padding: 20px; background: linear-gradient(135deg, #2563eb, #3b82f6); color: white; border-radius: 8px;">
             <h2 style="margin: 0 0 10px 0;">${resident.Name || 'Unknown Name'}</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
                 <div><strong>ID:</strong> ${resident.ResidentID}</div>
@@ -542,3 +569,4 @@ function formatDate(dateString) {
 window.showResidentDetail = showResidentDetail;
 window.loadResidents = loadResidents;
 window.toggleOfflineMode = toggleOfflineMode;
+window.toggleViewMode = toggleViewMode;
